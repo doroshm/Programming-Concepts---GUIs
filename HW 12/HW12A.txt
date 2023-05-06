@@ -1,0 +1,42 @@
+Homework 12 – Part A 
+Provide a brief definition of the following terms (in the JavaScript 
+programming context):
+
+ Parse - reading and converting some type of information into a 
+designated format so it can be used within said format;
+
+ Token - words or symbols used by code, which are reserved only
+for coding and cannot be used to declare variable names;
+
+ Delimiter - used to break strings apart within split();
+
+ Class - templates for creating objects or special functions
+for reading and changing data;
+
+ Object - collection of properties, where a name/key is given to
+an assigned value within an object;
+
+ Property - part of an object that stores values and names;
+
+ Method - functions stored as object properties;
+
+ Prototype - the mechanism where objects inherit features from one another,
+for example Array objects inherit from Array.prototype;
+
+ JSON - format for storing and transporting data;
+
+ fetch - brings a file with information over to a programmers code to be
+able to use;
+
+If you use a source (book or web site), cite your source. 
+ https://developer.mozilla.org/en-US/docs/Glossary/Parse#:~:text=Parsing%20means%20analyzing%20and%20converting,HTML%20into%20a%20DOM%20tree.
+ https://blog.airbrake.io/blog/javascript-error-handling/unexpected-token#:~:text=Tokens%3A%20These%20are%20words%20or,as%20part%20of%20variable%20names.
+ https://www.techonthenet.com/js/string_split.php#:~:text=Parameters%20or%20Arguments-,delimiter,one%20element%20containing%20the%20string.
+ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#:~:text=In%20JavaScript%2C%20an%20object%20is,properties%2C%20which%20define%20their%20characteristics.
+ https://developer.mozilla.org/en-US/docs/Glossary/property/JavaScript#:~:text=A%20JavaScript%20property%20is%20a,can%20be%20any%20JavaScript%20value.
+ https://www.geeksforgeeks.org/difference-between-methods-and-functions-in-javascript/#:~:text=JavaScript%20Methods%3A%20A%20JavaScript%20method,Content%20%7D%20%7D%3B%20object.methodName()
+ https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+ https://www.w3schools.com/js/js_object_prototypes.asp
+ https://www.w3schools.com/js/js_json.asp
+
+Email the document.

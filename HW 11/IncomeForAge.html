@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Income for the Ages</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-gap: 5px;
+            width: 910px;
+            grid-template-columns: 300px 300px 300px;
+            border-radius: 5px;
+        }
+
+        .box {
+            color: #fcf1e9;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 1em;
+            border: solid white 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Marko Doroch's Income for the Ages</h1>
+    <p1>“Households are by no means locked into the same quintile over time. Young educated <br>
+        households with professional skills and aspirations will typically move into the higher earning <br>
+        brackets during their financial life cycles. Households dependent on income from unskilled labor <br>
+        and service employment will not see the same financial progress over the years.”</p1>
+    <br />
+    <p1><br>(Source: http://www.advisorperspectives.com/dshort/updates/Household-Incomes-by-Age-Brackets.php)<br></p1>
+    <br />
+    <div class="wrapper">
+        <div class="box">
+            Age Range
+        </div>
+        <div class="box " style="grid-column: 2 / span 2">
+            Salary Range
+        </div>
+        <div class="box">
+            <input id="Radio1" type="radio" value="0" checked name="rad1" onchange="ClearOut()" />
+            <label for="Radio1">15 to 24 Years</label><br />
+            <input id="Radio2" type="radio" value="1" name="rad1" onchange="ClearOut()" />
+            <label for="Radio2">25 to 34 Years</label><br />
+            <input id="Radio3" type="radio" value="2" name="rad1" onchange="ClearOut()" />
+            <label for="Radio3">35 to 44 Years</label><br />
+            <input id="Radio4" type="radio" value="3" name="rad1" onchange="ClearOut()" />
+            <label for="Radio4">45 to 54 Years</label><br />
+            <input id="Radio5" type="radio" value="4" name="rad1" onchange="ClearOut()" />
+            <label for="Radio5">55 to 64 Years</label><br />
+            <input id="Radio6" type="radio" value="5" name="rad1" onchange="ClearOut()" />
+            <label for="Radio6">65 Years and up</label><br />
+        </div>
+        <div class="box">
+            <input id="Radio7" type="radio" value="0" checked name="rad2" onchange="ClearOut()" />
+            <label for="Radio7">$15,000 to $24,999</label><br />
+            <input id="Radio8" type="radio" value="1" name="rad2" onchange="ClearOut()" />
+            <label for="Radio8">$25,000 to $34,999</label><br />
+            <input id="Radio9" type="radio" value="2" name="rad2" onchange="ClearOut()" />
+            <label for="Radio9">$35,000 to $44,999</label><br />
+            <input id="Radio10" type="radio" value="3" name="rad2" onchange="ClearOut()" />
+            <label for="Radio10">$45,000 to $54,999</label><br />
+            <input id="Radio11" type="radio" value="4" name="rad2" onchange="ClearOut()" />
+            <label for="Radio11">$55,000 to $64,999</label><br />
+            <input id="Radio12" type="radio" value="5" name="rad2" onchange="ClearOut()" />
+            <label for="Radio12">$65,000 to $74,999</label><br />
+        </div>
+        <div class="box">
+            <input id="Radio13" type="radio" value="6" name="rad2" onchange="ClearOut()" />
+            <label for="Radio13">$75,000 to $84,999</label><br />
+            <input id="Radio14" type="radio" value="7" name="rad2" onchange="ClearOut()" />
+            <label for="Radio14">$85,000 to $94,999</label><br />
+            <input id="Radio15" type="radio" value="8" name="rad2" onchange="ClearOut()" />
+            <label for="Radio15">$95,000 to $104,999</label><br />
+            <input id="Radio16" type="radio" value="9" name="rad2" onchange="ClearOut()" />
+            <label for="Radio16">$105,000 to $114,999</label><br />
+            <input id="Radio17" type="radio" value="10" name="rad2" onchange="ClearOut()" />
+            <label for="Radio17">$115,000 to $124,999</label><br />
+            <input id="Radio18" type="radio" value="11" name="rad2" onchange="ClearOut()" />
+            <label for="Radio18">$125,000 and up</label><br />
+        </div>
+        <div class="box">
+            <button id="btnDisplay" onclick="Display()">See Where You Stand</button>
+        </div>
+        <div class="box" style="grid-column: 2 / span 2">
+            <div id="divResult">---</div>
+        </div>
+    </div>
+    <script>
+        //Marko Doroch
+        let AgeBrackets = ["15 to 24 Years", "25 to 34 Years", "35 to 44 Years", "45 to 54 Years", "55 to 64 Years", "65 Years and Older"];
+        let MedianIncome = [34311, 52702, 64973, 67141, 57538, 35611];
+        let IncomeRangesStart = [15000, 25000, 35000, 45000, 55000, 65000, 75000, 85000, 95000, 105000, 115000, 125000];
+
+        function Display() {
+            document.getElementById("btnDisplay").disabled = true;
+
+            let userValues = [];
+            document.getElementById("divResult").innerHTML =
+                "Your income range is ";
+
+            for (let i = 1; i <= 2; i++) {
+                let radios = document.getElementsByName("rad" + i);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        userValues.push(radios[j].value);
+                    }
+                }
+            }
+
+            if (MedianIncome[userValues[0]] < IncomeRangesStart[userValues[1]]) {
+                document.getElementById("divResult").innerHTML +=
+                    "above"
+            } else if (MedianIncome[userValues[0]] > IncomeRangesStart[userValues[1]] && MedianIncome[userValues[0]] < IncomeRangesStart[parseFloat(userValues[1])+1]) { 
+                document.getElementById("divResult").innerHTML +=
+                    "within"
+            } else {
+                document.getElementById("divResult").innerHTML +=
+                    "below"
+            }
+
+            document.getElementById("divResult").innerHTML +=
+                " the median of $" + MedianIncome[userValues[0]].toFixed(2) + " for your age range of " + AgeBrackets[userValues[0]] + ".";
+
+        }
+
+        function ClearOut() {
+            document.getElementById("btnDisplay").disabled = false;
+            document.getElementById("divResult").innerHTML = "";
+        }
+    </script>
+
+
+</body>
+
+</html>

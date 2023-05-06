@@ -1,0 +1,37 @@
+Homework 11 – Part A 
+
+Provide a brief definition of the following terms (in the interface 
+programming context):
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ charAt - returns the character at a specified index in a string ("string.charAt(index)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ charCodeAt - returns the Unicode of the character at a specified index in a string ("string.charCodeAt(index)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ indexOf - returns the position of the first occurrence of a value in a string. ("string.indexOf(searchvalue, start)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ join - returns an array as a string. ("array.join(separator)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ regular expression - a sequence of characters that forms a search pattern, 
+you can use this search pattern to describe what you are searching for. ("/pattern/modifiers;")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ replace - searches a string for a value or a regular expression, 
+returns a new string with the value(s) replaced, 
+but does not change the original string. ("string.replace(searchValue, newValue)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ split - splits a string into an array of substrings. ("string.split(separator, limit)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ substr - extracts a part of a string, begins at a specified position, and returns a specified number of characters,
+and also does not change the original string. ("string.substr(start, length)")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ toUpperCase/toLowerCase - converts a string to uppercase/lowercase letters, but does not also change original string. ("string.toUpperCase()")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+If you use a source (book or web site), cite your source. 
+ https://www.w3schools.com/jsref/jsref_charat.asp
+ https://www.w3schools.com/jsref/jsref_charcodeat.asp
+ https://www.w3schools.com/jsref/jsref_join.asp
+ https://www.w3schools.com/jsref/jsref_replace.asp#gsc.tab=0
+ https://www.w3schools.com/js/js_regexp.asp#gsc.tab=0&gsc.q=javascript%20replace
+ https://www.w3schools.com/jsref/jsref_split.asp
+ https://www.w3schools.com/jsref/jsref_substr.asp
+ https://www.w3schools.com/jsref/jsref_touppercase.asp
+Email the document.

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potus</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            color: white;
+            background-color: navy;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .wrapper {
+            display: grid;
+            width: 500px;
+            grid-template-columns: 250px 250px;
+        }
+
+        .a {
+            grid-column: 1;
+            grid-row: 1 / span 3;
+        }
+
+        .b {
+            grid-column: 2;
+            grid-row: 1;
+            padding: 25px;
+        }
+
+        .c {
+            grid-column: 2;
+            grid-row: 2 / span 4;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>POTUS:</h1>
+    <p>President of the United States</p>
+    <div class="wrapper">
+        <!--image-->
+        <div class="a">
+            <img src="" style="height:270px" id="imgPres" />
+        </div>
+        <!--drop down select-->
+        <div class="b">
+            <select id="selPres" onchange="Display()"></select>
+        </div>
+        <!--result-->
+        <div class="c">
+            <div id="divResult"></div>
+        </div>
+    </div>
+    <script>
+        //Marko Doroch
+        let name = [];
+        let date = [];
+        let nickname = [];
+        let image = [];
+
+        function populate() {
+            fetch('Presidents.txt')
+                .then(function (response) {
+                    return response.text();
+                })
+                .then(function (data) {
+                    let text = data;
+                    let qStuff = text.split("|");
+                    for (let i = 0; i < qStuff.length; i++) {
+                        let pieces = qStuff[i].split(",");
+                        name[i] = pieces[0];
+                        date[i] = pieces[1];
+                        nickname[i] = pieces[2];
+                        image[i] = pieces[3];
+                    }
+                    //console.log(name);
+                    //console.log(date);
+                    //console.log(nickname);
+                    //console.log(image);
+                    let mySelect = document.getElementById("selPres");
+                    for (let i = 0; i < name.length; i++) {
+                        let myOption = document.createElement("option");
+                        myOption.text = name[i];
+                        myOption.value = i;
+                        mySelect.appendChild(myOption);
+                    }
+                    mySelect.dispatchEvent(new Event("change"));
+                    Display();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+
+        function Display() {
+            let index = document.getElementById("selPres").value;
+            document.getElementById("imgPres").src = image[index];
+            document.getElementById("divResult").innerHTML = 
+            name[index] + "<br/>" + date[index] + "<br/>" + nickname[index] + "<br/> President";
+        }
+    </script>
+</body>
+
+</html>
