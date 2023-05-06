@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Geometric Series</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: aqua;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Marko Doroch's Geometric Series</h1>
+    <img src="Geometric.png">
+    <br />
+    <label for="r">Enter a value for r: </label>
+    <input id="r" type="number" oninput="ClearOut()">
+    <br />
+    <label for="terms">Enter the number of terms to include: </label>
+    <input id="terms" type="number" oninput="ClearOut()">
+    <br />
+    <button id="btnGenerate" onclick="btnGenerateSeries()">Generate Series</button>
+    <div id="divResult">---</div>
+    <script>
+        //Marko Doroch
+        function btnGenerateSeries() {
+            document.getElementById("btnGenerate").disabled = true;
+            let myR = parseFloat(document.getElementById("r").value);
+            let myTerms = parseFloat(document.getElementById("terms").value);
+            //alert(myX);
+            //alert(myTerms);
+
+            
+            if(myR >= 1 || myR <= -1) {
+                alert("Enter an r value between 1 and -1");
+                return;
+            }
+            if(myTerms <= 1) {
+                alert("Enter a number of terms greater than 1");
+                return;
+            }
+            let answer = 1;
+            for (let i = 1; i <= myTerms; i++) {
+                answer += Math.pow(myR, i);
+                
+                document.getElementById("divResult").innerHTML +=
+                "<br />" + i + ". " + answer;
+            }
+
+            document.getElementById("divResult").innerHTML += 
+            "<br />" + "The first " + myTerms + " terms of the geometric series with r=" + myR + 
+            " gives a result of" + "<br />" + answer;
+            
+        }
+
+        function ClearOut() {
+            document.getElementById("btnGenerate").disabled = false;
+            document.getElementById("divResult").innerHTML = "---"
+        }
+    </script>
+</body>
+</html>

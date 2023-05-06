@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko's Rock, Paper, Scissors</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: #EFE6DF;
+            color: #331100;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 50px;
+            grid-template-columns: 300px 300px;
+            grid-template-rows: 0px 0px 0px 0px;
+            border-radius: 5px;
+        }
+
+        .box {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Marko's Rock, Paper, Scissors</h1>
+    <div class="wrapper">
+        <!--Score1-->
+        <div class="box" id="divScore1">
+            <label for="Score1"> Your Score:</label>
+            <input id="Score1" type="number" value="0" readonly />
+        </div>
+
+        <!--Score2-->
+        <div class="box" id="divScore2">
+            <label for="Score2">CPUs Score:</label>
+            <input id="Score2" type="number" value="0" readonly />
+        </div>
+
+        <!--yourChoice-->
+        <div class="box" id="3">
+            Your Choice
+        </div>
+
+        <!--cpuChoice-->
+        <div class="box" id="4">
+            CPU Choice
+        </div>
+
+        <!--Your Select-->
+        <div class="box" id="5">
+            <select onchange="imageChange()" id="mySelect">
+                <option value="1rock">rock</option>
+                <option value="2paper">paper</option>
+                <option value="3scissors">scissor</option>
+            </select>
+        </div>
+
+        <!--Stop Start CPU-->
+        <div class="box" id="6">
+            <button id="btnStart" onclick="Start()">Start</button>
+            <button disabled id="btnStop" onclick="Stop()">Stop</button>
+        </div>
+
+        <!--yourImage-->
+        <div class="box" id="7">
+            <img id="imgYourImage" style="height:300px; width:300px" src="R.jpg">
+        </div>
+
+        <!--cpuImage-->
+        <div class="box" id="8">
+            <img id="imgCPUImage" style="height:300px; width:300px" src="R.jpg">
+        </div>
+    </div>
+
+    <script>
+        //Marko Doroch
+        let mySelect;
+        function imageChange() {
+            mySelect = document.getElementById("mySelect").value;
+            if (mySelect == "1rock") {
+                document.getElementById("imgYourImage").src = "R.jpg";
+            } else if (mySelect == "2paper") {
+                document.getElementById("imgYourImage").src = "P.jpg";
+            } else {
+                document.getElementById("imgYourImage").src = "S.jpg";
+            }
+        }
+
+        let counter = 0;
+        function Start() {
+            document.getElementById("btnStart").disabled = true;
+            document.getElementById("btnStop").disabled = false;
+            timerID = setInterval(Math1, 20);
+        }
+
+        let cpuPick;
+        function Math1() {
+            cpuPick = Math.floor(Math.random() * 3) + 1;
+            if (cpuPick == 1) {
+                document.getElementById("imgCPUImage").src = "R.jpg";
+            } else if (cpuPick == 2) {
+                document.getElementById("imgCPUImage").src = "P.jpg";
+            } else {
+                document.getElementById("imgCPUImage").src = "S.jpg";
+            }
+            counter++;
+        }
+
+        function Stop() {
+
+            document.getElementById("btnStart").disabled = false;
+            document.getElementById("btnStop").disabled = true;
+            clearInterval(timerID)
+
+            //1 = rock
+            //2 = paper
+            //3 = scissors
+
+            let myScore = parseFloat(document.getElementById("Score1").value);
+            let cpuScore = parseFloat(document.getElementById("Score2").value);
+
+            mySelect = document.getElementById("mySelect").value;
+
+            if (cpuPick == 1) {
+                if (mySelect == "2paper") {
+                    alert("YOU WON!")
+                    myScore += 1;
+                    document.getElementById("Score1").value = myScore;
+                } else if (mySelect == "3scissors") {
+                    alert("YOU LOST!")
+                    cpuScore += 1;
+                    document.getElementById("Score2").value = cpuScore;
+                } else {
+                    alert("TIE!")
+                }
+            } else if (cpuPick == 2) {
+                if (mySelect == "3scissors") {
+                    alert("YOU WON!")
+                    myScore += 1;
+                    document.getElementById("Score1").value = myScore;
+                } else if (mySelect == "1rock") {
+                    alert("YOU LOST!")
+                    cpuScore += 1;
+                    document.getElementById("Score2").value = cpuScore;
+                } else {
+                    alert("TIE!")
+                }
+            } else {
+                if (mySelect == "1rock") {
+                    alert("YOU WON!")
+                    myScore += 1;
+                    document.getElementById("Score1").value = myScore;
+                } else if (mySelect == "2paper") {
+                    alert("YOU LOST!")
+                    cpuScore += 1;
+                    document.getElementById("Score2").value = cpuScore;
+                } else {
+                    alert("TIE!")
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

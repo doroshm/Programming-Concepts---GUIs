@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Riemann Zeta</title>
+    <!--Marko Doroch-->
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="images&title">
+        <h1>Marko Doroch's Riemann Zeta</h1>
+        <img src="Zeta.png">
+        <br />
+        <img src="Zeta2.png">
+        <br />
+        <img src="Zeta3.png">
+        <br />
+        <img src="Zeta4.png">
+        <br />
+    </div>
+    <labal for="sPower">Enter a value for s (the power):</labal>
+    <input id="sPower" value="" type="number" min="1.00000001" oninput="ClearOut()">
+    <br />
+    <label for="nTerms">Enter a value for N (number of terms):</label>
+    <input id="nTerms" value="" type="number" min="1.00000001" oninput="ClearOut()">
+    <br />
+    <button id="btnGenerate" onclick="btnGenerateSeries()">Generate Series</button>
+    <br />
+    <div id="divResult">---</div>
+
+    <script>
+        //Marko Doroch
+        function btnGenerateSeries() {
+            document.getElementById("btnGenerate").disabled = true;
+            let power = parseFloat(document.getElementById("sPower").value);
+            let terms = parseFloat(document.getElementById("nTerms").value);
+            //alert("terms" + terms);
+            //alert("power" + power);
+            if(power <= 1) {
+                alert("Enter an s value greater than 1");
+                return;
+            }
+            if(terms <= 1) {
+                alert("Enter an N value greater than 1");
+                return;
+            }
+
+            let answer = 0;
+            let denominator;
+
+            for (let i = 1; i <= terms; i++) {
+                denominator = Math.pow(i, power);
+                //alert(denominator);
+                answer += 1/denominator
+                
+                //total += answer
+
+                document.getElementById("divResult").innerHTML +=
+                "<br />" + i + ". " + answer;
+            }
+            
+            document.getElementById("divResult").innerHTML += 
+            "<br />" + "The first " + terms + " terms of the Riemann Zeta with s=" + power + 
+            " gives a result of" + "<br />" + answer;
+
+        }
+
+        function ClearOut() {
+            document.getElementById("btnGenerate").disabled = false;
+            document.getElementById("divResult").innerHTML = "---"
+        }
+    </script>
+</body>
+</html>

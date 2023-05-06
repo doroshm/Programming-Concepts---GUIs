@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Dark Side of the Moon</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00
+        }
+
+        .wrapper {
+            text-align: center;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 10px;
+            background-color: black;
+            grid-template-columns: 400px;
+            grid-template-rows: 400px 100px 100px;
+            color: white
+        }
+
+        .cell {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Marko Doroch's Dark Side of the Moon</h1>
+    <div class="wrapper">
+        <!--planets-->
+        <div class="cell" id="images">
+            <img id="planetEart" src="planet_earth_rotating.gif" style="position: absolute; top: 200px; left: 200px; padding-top: 50px">
+            <img id="greenCircle" src="circle_green.png" style="position: absolute; top: 200px; left: 400px; padding-top: 50px">
+        </div>
+        <!--nothing-->
+        <div class="cell" id="non-breaking-space">&nbsp;</div>
+        <!--buttons-->
+        <div class="cell" id="buttons">
+            <button id="btnStart" onclick="btn_onclick_Start()">Start</button>
+            <button id="btnReverse" disabled onclick="btn_onclick_Reverse()">Reverse</button>
+            <button id="btnStop" disabled onclick="btn_onclick_Stop()">Stop</button>
+        </div>
+    </div>
+    <script>
+        //Marko Doroch
+        let t = 0;
+        let x_cm = 200;
+        let y_cm = 200;
+        let R = 200;
+        let w = 0.01047;
+
+        function btn_onclick_Start() {
+            document.getElementById("btnStart").disabled = true;
+            document.getElementById("btnReverse").disabled = false;
+            document.getElementById("btnStop").disabled = false;
+            timerID = setInterval(Math1, 10);
+        }
+
+        function Math1() {
+            x = x_cm + R * Math.cos(w * t);
+            y = y_cm + R * Math.sin(w * t);
+
+            document.getElementById("greenCircle").style.left = x + "px";
+            document.getElementById("greenCircle").style.top = y + "px";
+            //console.log(t + ". " + x + " = x");
+            //console.log(t + ". " + y + " = y");
+            t++;
+        }
+
+        function btn_onclick_Reverse() {
+            if (w > 0) {
+                w = w * -1
+            } else {
+                w = w * -1
+            }
+        }
+
+        function btn_onclick_Stop() {
+            document.getElementById("btnStart").disabled = false;
+            document.getElementById("btnReverse").disabled = true;
+            document.getElementById("btnStop").disabled = true;
+            clearInterval(timerID);
+        }
+    </script>
+</body>
+
+</html>
