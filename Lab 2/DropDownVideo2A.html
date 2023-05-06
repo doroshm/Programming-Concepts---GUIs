@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropDownVideo2A</title>
+    <style>
+        body {
+            background-color: red;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        iframe {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        option:checked { 
+                font-weight: bold; 
+            }
+    </style>
+</head>
+
+<body>
+    <h1>Drop Down Youtube Videos</h1>
+    <iframe id="mp4Video" src="https://www.youtube.com/embed/4AivEQmfPpk" width="560"
+        height="315"></iframe><br /><br />
+    <select id="selVideo" onchange="ChangeVideo()">
+        <option value="https://www.youtube.com/embed/4AivEQmfPpk">How Many Countries Are There?</option>
+        <option value="https://www.youtube.com/embed/1MvzHGmwgvg">You Are Two</option>
+    </select>
+
+    <script>
+        function ChangeVideo() {
+            let choice = document.getElementById("selVideo").value;
+            document.getElementById("mp4Video").src = choice;
+        }
+    </script>
+</body>
+
+</html>

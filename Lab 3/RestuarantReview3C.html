@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restuarant Review</title>
+    <style>
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider {
+            display: inline-block;
+            width: 200px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            padding: 1em;
+            margin: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Review Marko's Pizzeria</h1>
+    <p1>Use the slider to determine what our rating will be:</p1>
+    <br />
+    <input type="range" min="0" max="100" value="50" id="Rating" class="slider" oninput="ReviewReturn()">
+    <label id="RatingNum">Rating: </label>
+    <br />
+    <textarea id="Review" readonly row="4" cols="10"></textarea>
+    <br />
+    <script>
+        function ReviewReturn() {
+            let Rating1 = parseInt(document.getElementById("Rating").value);
+            
+            document.getElementById("RatingNum").innerHTML = "Rating: " + Rating1;
+            
+            if (Rating1 >= 80) {
+                document.getElementById("Review").innerHTML =
+                    "Glad you liked it!";
+            }
+            else if (Rating1 >= 50) {
+                document.getElementById("Review").innerHTML =
+                    "Thanks for the review!";
+            }
+            else {
+                document.getElementById("Review").innerHTML =
+                    "So sorry to hear that!";
+            }
+        }
+    </script>
+</body>
+
+</html>

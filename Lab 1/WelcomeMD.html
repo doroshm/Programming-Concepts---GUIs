@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body{
+            background-color:azure;
+            color:crimson;
+            font-size: large;
+            padding: 1em;
+            margin: 1em;
+        }
+        div{
+            margin-top:0.5em;
+        }
+        input{
+            width:10em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+    <div>
+        <label for="txtName">Enter your name: </label>
+        <input type="text" id="txtName" />
+    </div>
+    <div>
+        <input id="btnEnglish" type="button" value="English" onclick="English()">
+        <span id="spEnglish">---</span>
+    </div>
+    <div>
+        <input id="btnFrench" type="button" value="French" onclick="French()">
+        <span id="spFrench">---</span>
+    </div>
+    <div>
+    <!--first language-->
+        <input id="btnUkrainian" type="button" value="Ukrainian" onclick="Ukrainian()">
+        <span id="spUkrainian">---</span>
+    </div>
+    <div>
+     <!--second language-->
+        <input id="btnSpanish" type="button" value="Spanish" onclick="Spanish()">
+        <span id="spSpanish">---</span>
+    </div>
+    <script>
+        function English(){
+            let username = document.getElementById("txtName").value;
+            document.getElementById("spEnglish").innerHTML = "Welcome " + username;
+        }
+
+        function French(){
+            let username = document.getElementById("txtName").value;
+            document.getElementById("spFrench").innerHTML = "Bienvenu " + username;
+        }
+// first language function
+        function Ukrainian(){
+            let username = document.getElementById("txtName").value;
+            document.getElementById("spUkrainian").innerHTML = "Priveet " + username;
+        }
+//second language function
+        function Spanish(){
+            let username = document.getElementById("txtName").value;
+            document.getElementById("spSpanish").innerHTML = "Hola " + username;
+        }
+    </script>
+</body>
+
+</html>

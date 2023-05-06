@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Am I?</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Where Am I?</h1>
+    <label for="Day1">Day: </label>
+    <select id="Day1" onchange="ClearOut()">
+        <option value="M">Monday</option>
+        <option value="T">Tuesday</option>
+        <option value="W">Wednesday</option>
+        <option value="Th">Thursday</option>
+        <option value="F">Friday</option>
+    </select><br />
+    <label for="Time1">Time: </label>
+    <select id="Time1" onchange="ClearOut()">
+        <option value="10">10:00 AM</option>
+        <option value="11">11:00 AM</option>
+        <option value="12">12:00 AM</option>
+        <option value="1">1:00 PM</option>
+        <option value="2">2:00 PM</option>
+        <option value="3">3:00 PM</option>
+        <option value="4">4:00 PM</option>
+    </select><br />
+    <input id="btnWhere" type="button" value="Where Am I?" onclick="btnWhere_onclick()" />
+    <br />
+    <div id="Where" style="border: medium solid white; width: 400px; height: 20px; color: white">&nbsp;</div>
+    <script>
+        function btnWhere_onclick() {
+            let day = document.getElementById("Day1").value 
+            let time = document.getElementById("Time1").value
+            //alert(day)
+            //alert(time)
+            let myClass = day+time
+            //alert(myClass)
+            let here;
+            switch(myClass){
+                case "M10":
+                case "W10":
+                case "Th10": 
+                case "F10":
+                    here = "I am in Calc I (HOLR 365)"
+                    break;
+                case "M11":
+                case "W11":
+                case "M12":
+                case "W12":
+                    here = "I am in Food in Our Culture (HAYM 221)"
+                    break;
+                case "M2":
+                case "T11":
+                case "T12":
+                case "W2":
+                case "F2":
+                    here = "I am in Programming Concepts & GUIs (HOLR 155)"
+                    break;
+                case "M3":
+                case "M4":
+                case "W3":
+                case "W4":
+                    here = "I am in Data Mgt Systems (HOLR 155)"
+                    break;
+                case "T3":
+                case "T4":
+                case "Th3":
+                case "Th4": 
+                    here = "I am in College Writing I: Persuasion (HAYM 211)"
+                    break;
+                default:
+                    here = "I am not in class!"
+            }
+            document.getElementById("Where").innerHTML = here;
+        }
+        function ClearOut(){
+            document.getElementById("Where").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

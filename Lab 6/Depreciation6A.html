@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depreciation</title>
+    <style>
+        body {
+            background-color: orange;
+            color: black;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-gap: 3px;
+            width: 450px;
+            grid-template-columns: 300px 300px;
+            background-color: orange;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .box {
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: .75em;
+            border: solid black 2px;
+        }
+
+        #divB {
+            grid-column: 2;
+            grid-row: 1 / span 4;
+        }
+
+        #divF {
+            grid-column: 1 / span 2;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!--Initial Value------------------------------------------------------------------------------------->
+        <div class="box" id="divA">
+            <label for="initialValue">Initial Value: </label>
+            <input id="initialValue" type="number" value="" oninput="ClearOut()" />
+        </div>
+        <!---Explaination--------------------------------------------------------------------------------------------->
+        <div class="box" id="divB">
+            <p1>The simplest and most commonly used
+                depreciation method, straight line
+                depreciation is calculated by taking the
+                purchase or acquisition price of an asset
+                can be reasonably expected to benefit
+                the company (called "usefull life" in
+                accounting jargon).</p1>
+        </div>
+        <!---Salvage Value--------------------------------------------------------------------------------------------->
+        <div class="box" id="divC">
+            <label for="salvageValue">Salvage Value: </label>
+            <input id="salvageValue" type="number" value="" oninput="ClearOut()" />
+        </div>
+        <!----Lifetime-------------------------------------------------------------------------------------------->
+        <div class="box" id="divD">
+            <label for="Lifetime">Lifetime: </label>
+            <input id="Lifetime" type="number" value="" oninput="ClearOut()" />
+        </div>
+        <!----Button---------------------------------------------------------------------------------------------->
+        <div class="box" id="divE">
+            <input id="btnDepreciation" type="button" value="Generate the Depreciation Schedule"
+                onclick="btnDepreciation_onclick()" />
+        </div>
+        <!--Text Area------------------------------------------------------------------------------------------------------->
+        <div class="box" id="divF">
+            <textarea id="taResult" readonly rows="6" cols="73"></textarea>
+        </div>
+
+        <script>
+            function btnDepreciation_onclick() {
+                
+                document.getElementById("btnDepreciation").disabled = true;
+                
+                let myInitial = parseFloat(document.getElementById("initialValue").value);
+                let mySalvage = document.getElementById("salvageValue").value;
+                let myLifetime = document.getElementById("Lifetime").value;
+                //alert(myInitial)
+                //alert(mySalvage)
+                //alert(myLifetime)
+
+                if(isNaN(myInitial)){
+                    alert("Enter an initial value!")
+                    document.getElementById("initialValue").focus();
+                    return;
+                }else if(isNaN(mySalvage)){
+                    alert("Enter a salvage value!")
+                    document.getElementById("salvageValue").focus();
+                    return;
+                }else if(isNaN(myLifetime)){
+                    alert("Enter a liftime!")
+                    document.getElementById("Lifetime").focus();
+                    return;
+                }
+
+                if(myInitial <= 0){
+                    alert("Enter a valid initial value!")
+                    document.getElementById("initialValue").focus();
+                    return;
+                }else if(mySalvage > myInitial){
+                    alert("The salvage value cannot be larger than the initial!")
+                    document.getElementById("salvageValue").focus();
+                    return;
+                }else if(mySalvage <= 0){
+                    alert("Enter a valid salvage value!")
+                    document.getElementById("salvageValue").focus();
+                    return;
+                }else if(myLifetime < 1){
+                    alert("Enter a valid lifetime!")
+                    document.getElementById("Lifetime").focus();
+                    return;
+                }
+
+                document.getElementById("taResult").value =
+                    "The initial value is $" + myInitial.toFixed(2) + "." + "\n";
+
+                let myDepreciation = parseFloat((myInitial - mySalvage) / (myLifetime));
+                let myCurrent = myInitial;
+                for (let i = 1; i <= myLifetime; i++) {
+                    myCurrent = myCurrent - myDepreciation
+                    document.getElementById("taResult").value +=
+                        "After " + i + " year(s), the value is $" + myCurrent.toFixed(2) + "\n";
+                }
+            }
+
+            function ClearOut() {
+                document.getElementById("btnDepreciation").disabled = false;
+                document.getElementById("taResult").value = "";
+            }
+        </script>
+</body>
+
+</html>

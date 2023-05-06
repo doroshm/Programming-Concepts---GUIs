@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Year Are You?</title>
+    <style>
+        body {
+            background-color: aqua;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        input,
+        button,
+        p {
+            margin-top: 0.5em;
+        }
+
+        button {
+            background-color: red;
+            color: whitesmoke;
+        }
+
+        button:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>What Year Are You?</h1>
+    <label for="Credits">Enter credits earned so far: </label>
+    <input id="Credits" type="number" step="0.5" oninput="return Clear()" />
+    <br />
+    <button id="btnClass" onclick="return CreditCalc()">Display Year: </button>
+    <br />
+    <textarea id="Year" readonly row="4" cols="10"></textarea>
+    <br />
+    <script>
+        function CreditCalc() {
+            var Credits1 = parseFloat(document.getElementById("Credits").value);
+            if (isNaN(Credits1)) {
+                alert("Please enter credit amount!");
+                document.getElementById("Year").focus();
+                return;
+            }
+            if (Credits1 < 0) {
+                alert("Enter valid credit amount!");
+                document.getElementById("Year").focus();
+                return;
+            }
+            if (Credits1 > 100) {
+                alert("You're a nerd!");
+                document.getElementById("Year").focus();
+                return;
+            }
+            
+            if (Credits1 >= 84) {
+                document.getElementById("Year").innerHTML =
+                    "Senior";
+            }
+            else if (Credits1 >= 54) {
+                document.getElementById("Year").innerHTML =
+                    "Junior";
+            }
+            else if (Credits1 >= 24) {
+                document.getElementById("Year").innerHTML =
+                    "Sophomore";
+            }
+            else {
+                document.getElementById("Year").innerHTML =
+                    "Freshman";
+            }
+        }
+
+        function Clear() {
+            document.getElementById("Year").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

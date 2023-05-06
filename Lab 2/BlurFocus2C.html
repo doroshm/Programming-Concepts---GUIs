@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlurFocus2C</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        input,
+        div {
+            margin-top: 0.5em;
+        }
+
+        label {
+            display: inline-block;
+            width: 5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Blur and Focus</h1>
+    <label for="txt">text: </label>
+    <input type="text" id="txtText" onfocus="myColorFocus(this)" onblur="myDefaultBlur(this)" /><br />
+    <label for="num">number: </label>
+    <input type="number" id="txtNum" onfocus="myColorFocus(this)" onblur="myDefaultBlur(this)" /><br />
+    <script>
+        function myColorFocus(color) {
+            color.style.background = "Orange";
+        }
+        function myDefaultBlur(color) {
+            color.style.background = "LightGray";
+        }
+    </script>
+</body>
+
+</html>

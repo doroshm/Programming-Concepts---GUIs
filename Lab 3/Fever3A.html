@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fever</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: red;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        input,
+        button,
+        p {
+            margin-top: 0.5em;
+        }
+
+        button {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        button:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript Fever</h1>
+    <label for="temperature">Enter patient's temperature: </label>
+    <input id="temperature" type="number" step="1" oninput="return Clear()" />
+    <br />
+    <button id="btnTemp" onclick="return TempCalc()">Display Patient's Temperature Status</button>
+    <br />
+    <textarea id="TempStatus" readonly row="4" cols="10"></textarea>
+    <br />
+    <script>
+        function TempCalc() {
+            var temperature1 = parseFloat(document.getElementById("temperature").value);
+            if (isNaN(temperature1)) {
+                alert("Please enter the patient's temperature.");
+                document.getElementById("TempStatus").focus();
+                return;
+            }
+
+            if (temperature1 <= 90) {
+                alert("Too Cold! The Patient is DEAD!");
+                document.getElementById("TempStatus").focus();
+                return;
+            }
+
+            if (temperature1 > 110) {
+                alert("Too Hot! The Patient is DEAD!");
+                document.getElementById("TempStatus").focus();
+                return;
+            }
+
+            if (temperature1 >= 104.0) {
+                document.getElementById("TempStatus").innerHTML =
+                    "Hyperpyrexia";
+            }
+            else if (temperature1 >= 99.5) {
+                document.getElementById("TempStatus").innerHTML =
+                    "Fever";
+            }
+            else if (temperature1 >= 97.7) {
+                document.getElementById("TempStatus").innerHTML =
+                    "Normal";
+            }
+            else if (temperature1 >= 95) {
+                document.getElementById("TempStatus").innerHTML =
+                    "A little Low";
+            }
+            else {
+                document.getElementById("TempStatus").innerHTML =
+                    "Hypothermia";
+            }
+        }
+
+        function Clear() {
+            document.getElementById("TempStatus").innerHTML = "";
+        }
+
+    </script>
+
+</body>
+
+</html>

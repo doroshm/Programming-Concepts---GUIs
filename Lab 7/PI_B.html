@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's PI</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: white;
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Marko Doroch's PI--Series</h1>
+    <img id="imgEquation" src="PiSeries.png"/>
+    <br />
+    <label for="number">Enter the number of terms you would like to include in your series: </label>
+    <input id="number" type="number" value="" oninput="ClearOut()" />
+    <button id="btnGenerate" onclick="onclick_btnGenerate()">Generate Series</button>
+    <div id="divSeries"></div>
+    <script>
+        //Marko Doroch
+        function onclick_btnGenerate() {
+            document.getElementById("btnGenerate").disabled = true;
+            let myNumber = document.getElementById("number").value;
+            let denominator;
+            let sign;
+            let term;
+            let sum = 0;
+
+            for(let i = 1; i <= myNumber; i++) {
+                denominator = 2 * i - 1;
+                sign = Math.pow(-1 , i + 1);
+                term = (sign * 4)/(denominator);
+
+                sum += term;
+            }
+            
+            document.getElementById("divSeries").innerHTML = 
+            "The sum of the first " + myNumber + " terms in the series yields " + sum + ".";
+        }
+        
+        function ClearOut() {
+            document.getElementById("btnGenerate").disabled = false;
+            document.getElementById("divSeries").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

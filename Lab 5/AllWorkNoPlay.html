@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All work and No Play</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: blue;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All Work and No Play Make Jack a Dull Boy</h1>
+    <img src="JackBefore.jpg" height="150px" id="imgJack" />
+    <br />
+    <select id="selType" onchange="ChangeImg()">
+        <option value="Before">Jack Before</option>
+        <option value="During">Jack During</option>
+        <option value="After">Jack After</option>
+    </select>
+    <br />
+    <button id="btnJack" onclick="btnJack_click()">See Jack Write</button>
+    <br />
+    <div id="divJack">
+
+    </div>
+    <script>
+        //Marko Doroch
+        function btnJack_click() {
+            //Notes: 0, <20 = 20; 0, <=20 = 21; 0, <=19 = 20; 1, <=20 = 20;
+            for(let i = 0; i < 20; i++){
+                document.getElementById("divJack").innerHTML += 
+                "All work and no play makes Jack a dull boy. ";
+            }
+        }
+        function ChangeImg() {
+            let Jack = document.getElementById("selType").value;
+
+            switch (Jack) {
+                case "Before":
+                    document.getElementById("imgJack").src = "JackBefore.jpg";
+                    break;
+                case "During":
+                    document.getElementById("imgJack").src = "JackDuring.jpg";
+                    break;
+                case "After":
+                    document.getElementById("imgJack").src = "JackAfter.jpg";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

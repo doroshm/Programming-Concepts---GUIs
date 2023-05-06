@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entity Numbers</title>
+    <!--Marko Doroch-->
+    <style>
+        body{
+            background-color: blanchedalmond;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Entity Numbers</h1>
+    <p1>One can make an "HTML Entity" by putting together the symbols &#, some
+        number, and a semicolon. For example, &# 945; will yield a small Greek alpha &#945;.
+    </p1>
+    <br />
+    <br />
+    <p1>Enter the lower and upper bounds for the list of Entity Numbers you would like
+        displayed.
+    </p1>
+    <br/>
+    <br/>
+    <label for="txtLower">Lower Bound:</label>
+    <input id="txtLower" type="number" oninput="ClearOut()"/>
+    <label for="txtUpper">Upper Bound:</label>
+    <input id="txtUpper" type="number" oninput="ClearOut()"/>
+    <button id="btnHTML" onclick="btnHTML_click()"> Show HTML Entities in Range</button>
+    <br />
+    <br />
+    Entity List 
+    <div id="divHTML">
+
+    </div>
+    <script>
+        /*
+        //Marko Doroch
+        */
+        function btnHTML_click(){
+            document.getElementById("btnHTML").disabled = true;
+            let Lower = parseFloat(document.getElementById("txtLower").value);
+            let Upper = parseFloat(document.getElementById("txtUpper").value);
+            //alert(Lower);
+            //alert(Upper);
+
+            if(isNaN(Lower)){
+                alert("Enter a lower bound!");
+                return;
+            }else if(isNaN(Upper)){
+                alert("Enter a upper bound!");
+                return;
+            }else if(Lower < 0 || Upper < 0){
+                alert("Enter a number greater than 0!")
+                return;
+            }
+
+            for(let i = Lower; i <= Upper; i++){
+                document.getElementById("divHTML").innerHTML += 
+                i + ". &#" + i + ";" + "<br />";
+            }
+        }
+
+        function ClearOut(){
+            document.getElementById("btnHTML").disabled = false;
+            document.getElementById("divHTML").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

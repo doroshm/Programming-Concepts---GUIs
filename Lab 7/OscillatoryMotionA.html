@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Oscillatory Motion</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: white;
+            color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Marko Doroch's Oscillatory Motion</h1>
+    <button id="btnStart" onclick="StartTimer()">Start</button>
+    <button id="btnStop" disabled onclick="onclick_btnStop()">Stop</button>
+    <button id="btnReset" disabled onclick="onclick_btnReset()">Reset</button>
+    <br />
+    <img id="imgSpring" src="Spring.png" style=
+    "position:absolute; 
+    top:100px; 
+    left:50px; 
+    width:150px; 
+    height:300px"/>
+    <br />
+    <img id="imgWeight" src="Weight.png" style=
+    "position:absolute; 
+    top:380px; 
+    left:50px; 
+    width:150px;"/>
+    <script>
+        //Marko Doroch
+        let t = 0;
+
+        function StartTimer() {
+            document.getElementById("btnStart").disabled = true;
+            document.getElementById("btnStop").disabled = false;
+            
+            timerID = setInterval(Oscillate, 50);
+        }
+
+        function Oscillate() {
+            //alert("HI")
+            let heightSpring;
+            heightSpring = 300 + 100 * Math.sin(0.2 * t);
+            document.getElementById("imgSpring").style.height = heightSpring + "px";
+            let topWeight;
+            topWeight = heightSpring + 80;
+            document.getElementById("imgWeight").style.top = topWeight + "px";
+            t++;
+        }
+
+        function onclick_btnStop() {
+            document.getElementById("btnStart").disabled = false;
+            document.getElementById("btnStop").disabled = true;
+            document.getElementById("btnReset").disabled = false;
+            clearInterval(timerID)
+
+        }
+
+        function onclick_btnReset() {
+            document.getElementById("btnReset").disabled = true;
+            document.getElementById("btnStop").disabled = true;
+            t = 0;
+            document.getElementById("imgSpring").style.height = 300 + "px";
+            document.getElementById("imgWeight").style.top = 380 + "px";
+        }
+    </script>
+</body>
+
+</html>

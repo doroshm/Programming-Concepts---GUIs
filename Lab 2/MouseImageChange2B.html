@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseImageChange2B</title>
+    <style>
+        body {
+            background-color: red;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mouse Image Change</h1>
+
+    <img src="Spongebob.JPG" alt = "Spongebob" width="500" id="imgSpongebob" 
+    onmouseover="Patrick()" 
+    onmouseout="Spongebob()" 
+    />
+
+    <script>
+        function Patrick() {
+            document.getElementById("imgSpongebob").src = "Patrick.JPG";
+        }
+
+        function Spongebob() {
+            document.getElementById("imgSpongebob").src = "Spongebob.JPG"
+        }
+    </script>
+</body>
+
+</html>

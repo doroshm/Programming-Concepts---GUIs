@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko's Ride Share</title>
+    <style>
+        body {
+            background-color: wheat;
+            color: darkslategrey;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+
+        label {
+            display: inline-block;
+            width: 25em;
+        }
+    </style>
+    <!--Marko Doroch-->
+</head>
+
+<body>
+    <h1>Marko's Ride Share</h1>
+    <img src="ride_share.png" height="175px" id="imgCar" onmouseover="rideShare2()" 
+    onmouseout="rideShare1()" />
+    <br />
+    <label for="vehicleType1">Type of Vehicle:</label>
+    <select id="vehicleType1" onchange="ClearOut()">
+        <option value="R">Regular</option>
+        <option value="E">Extra Seats</option>
+        <option value="L">Luxury</option>
+    </select>
+    <br />
+    <label for="minutes1">Number of Minutes:</label>
+    <input id="minutes1" type="number" value="" oninput="ClearOut()"/>
+    <br />
+    <label for="miles1">Number of Miles:</label>
+    <input id="miles1" type="number" value="" oninput="ClearOut()"/>
+    <br />
+    <input id="btnRSP" type="button" value="Estimate Ride Share Price" onclick="btnRSP_onclick()" />
+    <br />
+    <div id="RSP" style="border: medium solid black; width: 400px; height: 20px">&nbsp;</div>
+    <script>
+        //Marko Doroch
+        function btnRSP_onclick() {
+            
+            let vehicle = document.getElementById("vehicleType1").value;
+            let time = parseFloat(document.getElementById("minutes1").value);
+            let miles = parseFloat(document.getElementById("miles1").value);
+            
+            //check
+            //alert(vehicle);
+            //alert(time);
+            //alert(miles);
+            
+            //warn them if inputs are invalid
+            if(isNaN(time)){
+                alert("Enter a valid time!");
+                return;
+            }
+            
+            if(isNaN(miles)){
+                alert("Enter a valid distance!");
+                return;
+            }
+
+            if(time <= 0 || miles <= 0){
+                alert("Your distance and time cannot be 0!");
+                return;
+            }
+
+            
+            let minPrice;
+            let milePrice;
+
+            switch(vehicle){
+                case "R":
+                    minPrice = 0.10
+                    milePrice = 0.90
+                    break;
+                case "E":
+                    minPrice = 0.20
+                    milePrice = 1.50
+                    break;
+                case "L":
+                    minPrice = 0.30
+                    milePrice = 2.30
+                    break;
+            }
+            let bill = 2.00 + (time)*(minPrice) + (miles+1)*(milePrice)
+            
+            if (bill < 10){
+                bill = 10;
+            }
+            
+            document.getElementById("RSP").innerHTML = "The estimated price of your ride is: $" + bill.toFixed(2);
+        }
+        //clear out
+        function ClearOut(){
+            document.getElementById("RSP").innerHTML = "";
+        }
+        //image change
+        function rideShare2() {
+            document.getElementById("imgCar").src = "ride_share_2.png";
+        }
+
+        function rideShare1() {
+            document.getElementById("imgCar").src = "ride_share.png";
+        }
+    </script>
+</body>
+</html>
