@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's At the Movies</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-gap: 1px;
+         grid-template-columns: 200px 200px 400px;
+         width: 802px;
+         height: 250px;
+      }
+
+      .box {
+         border-radius: 5px;
+         padding: 5px;
+         font-size: 1em;
+         border: solid white 1px;
+      }
+   </style>
+</head>
+
+<body onload="populate()">
+   <h1>Marko Doroch's At the Movies</h1>
+   <div class="wrapper">
+      <div class="box" style="grid-row: 1 ; grid-column: 1 / span 2 ;">
+         <select id="selMovie" onchange="Display()"></select>
+      </div>
+      <div class="box" style="grid-column: 3 ; grid-row: 1 / span 5 ;">
+         <img id="imgMovie" src="">
+      </div>
+      <div class="box">
+         Year
+      </div>
+      <div class="box">
+         <div id="divYear">AAA</div>
+      </div>
+      <div class="box">
+         Director
+      </div>
+      <div class="box">
+         <div id="divDirector">BBB</div>
+      </div>
+      <div class="box">
+         Stars
+      </div>
+      <div class="box">
+         <div id="divStars">CCC</div>
+      </div>
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         <div id="divDesc">DDD</div>
+      </div>
+      <div class="box" style="grid-column: 1 / span 3 ;">
+         <iframe id="urlVid" height="315px" width="420px" src=""></iframe>
+         <br />
+         <label for="inSearch">Search for actor</label>
+         <input type="text" value="" id="inSearch" oninput="enable()">
+         <button id="btnSearch" onclick="Search()">Search</button>
+      </div>
+   </div>
+   <script>
+      //Marko Doroch
+      let IMDBstuff;
+      function populate() {
+         fetch("IMDB.json")
+            .then(function (response) {
+               return response.json();
+            })
+
+            .then(function (data) {
+               IMDBstuff = data;
+
+               let mySelect = document.getElementById("selMovie");
+               for (let i = 0; i < IMDBstuff.IMDBTop.length; i++) {
+                  let myOption = document.createElement("option");
+                  myOption.text = IMDBstuff.IMDBTop[i].IMBDRank + ". " + IMDBstuff.IMDBTop[i].movieTitle;
+                  myOption.value = i;
+                  mySelect.appendChild(myOption);
+               }
+
+               mySelect.dispatchEvent(new Event("change"));
+            })
+
+            .catch(function (error) {
+               console.log(error);
+            })
+      }
+
+      let imgMovie = document.getElementById("imgMovie");
+      let divYear = document.getElementById("divYear");
+      let divDirector = document.getElementById("divDirector");
+      let divStars = document.getElementById("divStars");
+      let divDesc = document.getElementById("divDesc");
+      let urlVid = document.getElementById("urlVid");
+
+
+      function Display() {
+         let index = document.getElementById("selMovie").value;
+         imgMovie.src = IMDBstuff.IMDBTop[index].moviePoster;
+         divYear.innerHTML = IMDBstuff.IMDBTop[index].movieYear;
+         divDirector.innerHTML = IMDBstuff.IMDBTop[index].movieDirector;
+         divStars.innerHTML = IMDBstuff.IMDBTop[index].movieStars;
+         divDesc.innerHTML = IMDBstuff.IMDBTop[index].movieDesc;
+         urlVid.src = "https://www.youtube.com/embed/" + IMDBstuff.IMDBTop[index].youtubeCode;
+      }
+
+      function Search() {
+         document.getElementById("btnSearch").disabled = true;
+         let alertMessege = "";
+         let keyword = document.getElementById("inSearch").value.trim();
+
+         if (keyword == "") {
+            alert("Please enter an actor's name!");
+            document.getElementById("inSearch").focus();
+            return;
+         }
+
+         found = false;
+         for (let i = 0; i < IMDBstuff.IMDBTop.length; i++) {
+            if (IMDBstuff.IMDBTop[i].movieStars.toUpperCase().indexOf(keyword.toUpperCase()) != -1) {
+               found = true;
+               alertMessege += IMDBstuff.IMDBTop[i].movieTitle + "\n";
+            }
+         }
+         if (!found) {
+            alert("Sorry your search term was not found!");
+         } else {
+            alert(alertMessege);
+         }
+      }
+
+      function enable() {
+         document.getElementById("btnSearch").disabled = false;
+      }
+   </script>
+</body>
+
+</html>
