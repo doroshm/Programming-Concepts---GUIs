@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's Elements</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: black;
+         color: white;
+      }
+      .wrapper {
+         display: grid;
+         grid-gap: 5px;
+         width: 910px;
+         grid-template-columns: 300px 300px 300px;
+         color: #111;
+         border-radius: 5px;
+      }
+
+      .box {
+         background-color: black;
+         color: white;
+         border-radius: 5px;
+         padding: 20px;
+         font-size: 1em;
+         border: solid white 1px;
+      }
+   </style>
+</head>
+
+<body onload="populate()">
+   <h1>Marko Doroch's Elements</h1>
+   <div class="wrapper">
+      <div class="box" style="grid-column: 1 / span 2">
+         <select id="mySel" onchange="Display()"></select>
+      </div>
+      <div class="box" style="grid-column: 3; grid-row: 1 / span 4">
+         <img src="Hydrogen.png" id="img" style="height:250px">
+      </div>
+      <div class="box">
+         Symbol:
+      </div>
+      <div class="box">
+         <div id="divSymbol">Xx</div>
+      </div>
+      <div class="box">
+         State at STP:
+      </div>
+      <div class="box">
+         <div id="divSTP">YYYY</div>
+      </div>
+      <div class="box">
+         Description:
+      </div>
+      <div class="box">
+         <div id="divDesc">ffff</div>
+      </div>
+   </div>
+   <label for="selDesc">Choose a description: </label>
+   <select id="selDesc" onchange="return Clear()">
+      <option value="Non-metal">Non-metal</option>
+      <option value="Noble gas">Noble gas</option>
+      <option value="Alkali metal">Alkali metal</option>
+      <option value="Alkaline earth metal">Alkaline earth metal</option>
+      <option value="Metalloid">Metalloid</option>
+      <option value="Halogen">Halogen</option>
+      <option value="Metal">Metal</option>
+      <option value="Transition metal">Transition metal</option>
+      <option value="Lanthanide">Lanthanide</option>
+      <option value="Actinide">Actinide</option>
+   </select>
+   <button onclick="List()">Make List</button>
+   <br/>
+   <textarea rows="10" cols="46" id="taList"></textarea>
+   <script>
+      //Marko Doroch
+      let names = ["Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus", "Sulfur", "Chlorine", "Argon", "Potassium", "Calcium", "Scandium", "Titanium", "Vanadium", "Chromium", "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc", "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Rubidium", "Strontium", "Yttrium", "Zirconium", "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium", "Palladium", "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Tellurium", "Iodine", "Xenon", "Cesium", "Barium", "Lanthanum", "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium", "Europium", "Gadolinium", "Terbium", "Dysprosium", "Holmium", "Erbium", "Thulium", "Ytterbium", "Lutetium", "Hafnium", "Tantalum", "Tungsten", "Rhenium", "Osmium", "Iridium", "Platinum", "Gold", "Mercury", "Thallium", "Lead", "Bismuth", "Polonium", "Astatine", "Radon", "Francium", "Radium", "Actinium", "Thorium", "Protactinium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Fermium", "Mendelevium", "Nobelium", "Lawrencium", "Rutherfordium", "Dubnium", "Seaborgium", "Bohrium", "Hassium", "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium", "Ununtrium", "Flerovium", "Ununpentium", "Livermorium", "Ununseptium", "Ununoctium"];
+      let symbols = ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Uut", "Fl", "Uup", "Lv", "Uus", "Uuo"];
+      let STPs = ["Gas", "Gas", "Solid", "Solid", "Solid", "Solid", "Gas", "Gas", "Gas", "Gas", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Gas", "Gas", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Liquid", "Gas", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Gas", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Liquid", "Solid", "Solid", "Solid", "Solid", "Solid", "Gas", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "Solid", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+      let descs = ["Non-metal", "Noble gas", "Alkali metal", "Alkaline earth metal", "Metalloid", "Non-metal", "Non-metal", "Non-metal", "Halogen", "Noble gas", "Alkali metal", "Alkaline earth metal", "Metal", "Metalloid", "Non-metal", "Non-metal", "Halogen", "Noble gas", "Alkali metal", "Alkaline earth metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Metal", "Metalloid", "Metalloid", "Non-metal", "Halogen", "Noble gas", "Alkali metal", "Alkaline earth metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Metal", "Metal", "Metalloid", "Metalloid", "Halogen", "Noble gas", "Alkali metal", "Alkaline earth metal", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Lanthanide", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Metal", "Metal", "Metal", "Metalloid", "Halogen", "Noble gas", "Alkali metal", "Alkaline earth metal", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Actinide", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "Transition metal", "", "", "", "Transition metal", "", "", "", "", "", ""];
+      function populate() {
+         let mySelect = document.getElementById("mySel");
+         for (let i = 0; i < names.length; i++) {
+            let myOption = document.createElement("option");
+            myOption.text = names[i];
+            myOption.value = i;
+            mySelect.appendChild(myOption);
+         }
+         mySelect.dispatchEvent(new Event("change"));
+      }
+
+      function Display() {
+         let myIndex = document.getElementById("mySel").value;
+         document.getElementById("divSymbol").innerHTML = symbols[myIndex];
+         document.getElementById("divSTP").innerHTML = STPs[myIndex];
+         document.getElementById("divDesc").innerHTML = descs[myIndex];
+         document.getElementById("img").src = names[myIndex] + ".png";
+      }
+
+      function List() {
+         let MySelectDesc = document.getElementById("selDesc").value;
+         for (let i = 0; i < descs.length; i++) {
+            if (MySelectDesc == descs[i]) {
+               document.getElementById("taList").value +=
+                  names[i] + "\n";
+            }
+         }
+      }
+
+      function Clear() {
+         document.getElementById("taList").value = "";
+      }
+   </script>
+</body>
+
+</html>
