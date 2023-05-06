@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Coen Bro's Movies</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        span {
+            font-style: italic;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-gap: 1px;
+            grid-template-columns: 100px 100px 300px 450px;
+            width: 953px;
+        }
+
+        .box {
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 1em;
+            border: solid white 1px;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's Coen Bro's Movies</h1>
+    <div class="wrapper">
+        <div class="box" style="grid-row: 1; grid-column: 1 / span 2  ;">
+            <select id="selMovie" onchange="Display()"></select>
+        </div>
+        <div class="box" style="grid-column: 3; grid-row: 1 / span 3;">
+            <img height="150px" id="imgMovie" src="">
+        </div>
+        <div class="box" style="grid-column: 4; grid-row: 1 / span 3;">
+            <iframe id="ifFilm" src="" style="border: none;"></iframe>
+        </div>
+        <div class="box">Year: </div>
+        <div class="box">
+            <div id="divYear">AAA</div>
+        </div>
+        <div class="box">Runtime</div>
+        <div class="box">
+            <div id="divRuntime">BBB</div>
+        </div>
+        <div class="box">Cast:</div>
+        <div class="box" style="grid-column: 2 / span 3">
+            <div id="divCast">CCC</div>
+        </div>
+
+    </div>
+    <h2>Searches</h2>
+    <div>
+        <label>Year:</label>
+        <input type="number" min="1984" max="2010" value="2000" id="inYear" />
+        <button id="btnYear" onclick="searchYear()">Find Movie By Year</button>
+    </div>
+    <div>
+        <label>Attention Span Limit:</label>
+        <input type="number" min="90" max="200" value="120" id="inRuntime" />
+        <button id="btnRuntime" onclick="searchRuntime()">Find Movie By Runtime</button>
+    </div>
+    <div>
+        <label>Actor:</label>
+        <input type="text" value="" id="inActor" />
+        <button id="btnActor" onclick="searchActor()">Find Movie By Cast</button>
+    </div>
+    <script>
+        //Marko Doroch
+        let filmStuff = [];
+        function populate() {
+            fetch("coen.json")
+                .then(function (response) {
+                    return response.json();
+                })
+
+                .then(function (data) {
+                    filmStuff = data;
+
+                    let mySelect = document.getElementById("selMovie");
+                    for (let i = 0; i < filmStuff.movies.length; i++) {
+                        let myOption = document.createElement("option");
+                        myOption.text = filmStuff.movies[i].title;
+                        myOption.value = i;
+                        mySelect.appendChild(myOption);
+                    }
+
+                    mySelect.value = Math.floor(Math.random() * filmStuff.movies.length);
+                    mySelect.dispatchEvent(new Event("change"));
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+
+        function Display() {
+            let index = document.getElementById("selMovie").value;
+            document.getElementById("divYear").innerHTML = filmStuff.movies[index].year;
+            document.getElementById("divRuntime").innerHTML = filmStuff.movies[index].runtime;
+            document.getElementById("divCast").innerHTML = filmStuff.movies[index].stars;
+            document.getElementById("imgMovie").src = filmStuff.movies[index].poster;
+            document.getElementById("ifFilm").src = "https://www.youtube.com/embed/" + filmStuff.movies[index].youtube;
+        }
+
+        function searchYear() {
+            let alertMessege = "";
+            let year = parseFloat(document.getElementById("inYear").value);
+
+            if (year == "") {
+                alert("Please enter a year");
+                document.getElementById("inYear").focus();
+                return;
+            }
+
+            let found = false;
+            for (let i = 0; i < filmStuff.movies.length; i++) {
+                if (year === parseFloat(filmStuff.movies[i].year)) {
+                    found = true;
+                    alertMessege += filmStuff.movies[i].title + " --- " + filmStuff.movies[i].year + "\n" + "\n";
+                }
+            }
+            if (!found) {
+                alert("Sorry");
+            } else {
+                alert(alertMessege);
+            }
+        }
+
+        function searchRuntime() {
+            let alertMessege = "";
+            let limit = parseFloat(document.getElementById("inRuntime").value);
+
+            if (limit == "") {
+                alert("Please enter a runtime limit!");
+                document.getElementById("inRuntime").focus();
+                return;
+            }
+
+            let found = false;
+            for (let i = 0; i < filmStuff.movies.length; i++) {
+                if (parseFloat(filmStuff.movies[i].runtime) < limit) {
+                    found = true;
+                    alertMessege += filmStuff.movies[i].title + " --- " + filmStuff.movies[i].runtime + "\n" + "\n";
+                }
+
+            }
+            if (!found) {
+                alert("Sorry");
+            } else {
+                alert(alertMessege);
+            }
+        }
+
+        function searchActor() {
+            let alertMessege = "";
+            let keyword = document.getElementById("inActor").value.trim();
+            if (keyword == "") {
+                alert("Please enter a search term!");
+                document.getElementById("inActor").focus();
+                return;
+            }
+
+            let found = false;
+            for (let i = 0; i < filmStuff.movies.length; i++) {
+                if (filmStuff.movies[i].stars.toUpperCase().indexOf(keyword.toUpperCase()) != -1) {
+                    found = true;
+                    alertMessege += filmStuff.movies[i].title + " --- " + filmStuff.movies[i].stars + "\n" + "\n";
+                }
+            }
+            if (!found) {
+                alert("Sorry");
+            } else {
+                alert(alertMessege);
+            }
+        }
+    </script>
+</body>
+
+</html>

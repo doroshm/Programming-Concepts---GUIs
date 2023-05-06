@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Bounce</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: greenyellow;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Marko Doroch's Bounce</h1>
+    <label for="userVelocity">Set the initial velocity: </label>
+    <input id="userVelocity" type="number" value="40" min="20" max="60" step="1">
+    <br />
+    <label for="userAcceleration">Set the acceleration: </label>
+    <input id="userAcceleration" type="number" value="4" min="2" max="6" step="0.1">
+    <br />
+    <button id="btnBounce" onclick="Start()">Bounce</button>
+    <br />
+    <div id="divResult">
+        <img id="ball" src="Soccer.png" style="height: 80px; top: 500px; position: absolute;">
+    </div>
+    <script>
+        //Marko Doroch
+        let y = 500;
+        let v = 400;
+        let a = 4;
+        let t = 0;
+
+        function Start() {
+            document.getElementById("btnBounce").disabled = true;
+            timerID = setInterval(btnBounce_onclick, 50);
+        }
+        
+        function btnBounce_onclick() {
+            v = document.getElementById("userVelocity").value;
+            a = document.getElementById("userAcceleration").value;
+            y = 500 - v * t + a * t * t /2
+
+            document.getElementById("ball").style.top = y + "px";
+            t++;
+            if(t >= (2*v/a)) {
+                document.getElementById("btnBounce").disabled = false;
+                clearInterval(timerID);
+                y = 500;
+                t = 0;
+            }
+        }
+    </script>
+</body>
+
+</html>
