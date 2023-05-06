@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Gold Chains</title>
+    <!--Marko Doroch-->
+    <style>
+        body{
+            background-color: aliceblue;
+            color:indigo
+        }
+    </style>
+</head>
+<body>
+    <h1>Marko Doroch's Gold Chains</h1>
+    <img src="gold_thick.png" height="200px" id="imgGoldChain" onmouseover="goldlengthOver()" 
+    onmouseout="goldthickOut()"/>
+    <br />
+    <label for="length1">Enter your chain length (in inches): </label>
+    <input id="length1" type="number" value="" oninput="ClearOut()"/>
+    <br />
+    <label for="widthSel">Enter your chain width (in mm): </label>
+    <select id="widthSel" onchange="ClearOut()">
+        <option value="2">2 mm</option>
+        <option value="3">3 mm</option>
+        <option value="4">4 mm</option>
+        <option value="5">5 mm</option>
+        <option value="6">6 mm</option>
+    </select>
+    <br />
+    <label for="karatSel">Enter the karat: </label>
+    <select id="karatSel" onchange="ClearOut()">
+        <option value="10">10 Karat</option>
+        <option value="14">14 Karat</option>
+        <option value="18">18 Karat</option>
+    </select>
+    <br />
+    <input id="btnChainCost" type="button" value="Estimate the chain cost" onclick="btnChainCost_onclick()" />
+    <br />
+    <div id="divChainCost" style="border: medium solid black; width: 400px; height: 20px">&nbsp;</div>
+
+    <script>
+        /*
+        //Marko Doroch
+        */
+        function btnChainCost_onclick(){
+            let length = parseFloat(document.getElementById("length1").value);
+            let width = parseFloat(document.getElementById("widthSel").value);
+            let karat = parseFloat(document.getElementById("karatSel").value);
+            //alert(length);
+            //alert(width);
+            //alert(karat);
+            
+            if(isNaN(length)){
+                alert("Enter a length!");
+                document.getElementById("length1").focus();
+                return;
+            }
+
+            if(length <= 0){
+                alert("Your length cannot be 0 or a negative number!");
+                document.getElementById("length1").focus();
+                return;
+            }
+            
+            if(length > 24){
+                alert("May be too long!");
+            }else if(length <= 24 && length >= 16){
+                alert("Good for necklace!");
+            }else if(length < 16 && length >= 9.5){
+                alert("Too long for a bracelet and too short for a necklace!");
+            }else if(length < 9.5 && length >= 6){
+                alert("Good for a bracelet!");
+            }else{
+                alert("May be too small!");
+            }
+
+            let total = 0.1348 * karat * length * width * width;
+
+            document.getElementById("divChainCost").innerHTML = "The estimated cost is $" + total.toFixed(2);
+        }
+
+        function goldlengthOver() {
+            document.getElementById("imgGoldChain").src = "gold_length.png";
+        }
+
+        function goldthickOut() {
+            document.getElementById("imgGoldChain").src = "gold_thick.png";
+        }
+
+        function ClearOut(){
+            document.getElementById("divChainCost").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

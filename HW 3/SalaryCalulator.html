@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Salary Calculator</h1>
+    <p1>Please enter your hourly wage and the number of hours you worked this week, then click to calculate</p1>
+    <br />
+    <p1>your gross pay for the week. You will earn time and a half for any hours exceeding 40. </p1>
+    <br />
+    <p1></p1>
+    <br />
+    <label for="HourlyWage">Enter your hourly wage: </label>
+    <input id="HourlyWage" type="text" value="" oninput="ClearOut()"/>
+    <br />
+    <p1></p1>
+    <br />
+    <label for="Hours">Enter the number of hours worked this week: </label>
+    <input id="Hours" type="number" step="1" value="" oninput="ClearOut()"/>
+    <br />
+    <p1></p1>
+    <br />
+    <input id="btnCalc" type="button" value="Calculate Pay Per Week" onclick="btnCalculate_onclick()" />
+    <br />
+    <!-- <textarea id="Calculation" readonly rows="4" cols="10"></textarea> -->
+    <div id="Calculation" style="border: medium solid black; width: 400px; height: 20px;">&nbsp;</div>
+    <script>
+        function btnCalculate_onclick() {
+            let fromWage = document.getElementById("HourlyWage").value;
+            let fromHours = document.getElementById("Hours").value;
+
+            let Salary;
+            
+            if(isNaN(fromWage)) {
+                alert("Enter a valid wage!")
+            }
+            else if (fromHours == 0 || fromWage == 0) {
+                alert("You forgot to enter something!")
+            }
+            else if (fromHours < 0 || fromWage < 0) {
+                alert("Enter a valid number!")
+            }
+            else if (fromHours > 84) {
+                alert("Enter a valid number of hours!")
+            }
+            else if (fromHours > 40) {
+                Salary = (40 * fromWage + (fromHours - 40) * 1.5 * fromWage)
+            } else
+                Salary = (fromWage * fromHours)
+
+            document.getElementById("Calculation").innerHTML = "Your Gross Pay for the week is: $" + Salary.toFixed(2);
+        }
+        function ClearOut() {
+            document.getElementById("Calculation").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

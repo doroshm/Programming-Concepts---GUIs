@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Rolling Doubles</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's Rolling Doubles</h1>
+    <label for="mySel">How many thousands of simulations do you want? </label>
+    <select onchange="ClearOut()" id="mySel"></select>
+    <br />
+    <button id="btnGenerate" onclick="Roll()">Perform the simulation</button>
+    <div id="divResult"></div>
+    <script>
+        //Marko Doroch
+        function populate() {
+            let mySelect = document.getElementById("mySel");
+            for (let i = 1; i <= 20; i++) {
+                let myOption = document.createElement("option");
+                myOption.text = i;
+                myOption.value = i * 1000;
+                //alert(myOption.value);
+                mySelect.appendChild(myOption);
+            }
+        }
+
+        let statement;
+        let doublesDoubles = 0;
+        let doubles = 0;
+        function Roll() {
+            document.getElementById("btnGenerate").disabled = true;
+            let nSimulations = document.getElementById("mySel").value;
+
+            for (let i = 1; i <= nSimulations; i++) {
+                
+                let roll1 = Math.floor(Math.random() * 6) + 1;
+                let roll2 = Math.floor(Math.random() * 6) + 1;
+                
+                if (roll1 == roll2) {
+                    
+                    doubles += 1;
+                    let roll3 = Math.floor(Math.random() * 6) + 1;
+                    let roll4 = Math.floor(Math.random() * 6) + 1;
+                    
+                    if (roll3 == roll4) {
+                        doublesDoubles += 1;
+                    }
+                }
+            }
+            document.getElementById("divResult").innerHTML +=
+                doubles + " doubles occurred which is " + ((doubles / nSimulations) * 100).toFixed(3) + "%";
+            document.getElementById("divResult").innerHTML +=
+                "<br/>" + doublesDoubles + " double doubles occurred which is " + ((doublesDoubles / nSimulations) * 100).toFixed(3) + "%"
+        }
+
+        function ClearOut() {
+            doubles = 0;
+            doublesDoubles = 0;
+            document.getElementById("btnGenerate").disabled = false;
+            document.getElementById("divResult").innerHTML = ""
+        }
+    </script>
+</body>
+
+</html>

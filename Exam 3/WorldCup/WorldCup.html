@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's Fantasy Soccer Team</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-gap: 1px;
+         grid-template-columns: 100px 200px 300px;
+         width: 602px;
+         height: 250px;
+      }
+
+      .box {
+         border-radius: 5px;
+         padding: 5px;
+         font-size: 1em;
+         border: solid white 1px;
+      }
+   </style>
+</head>
+
+<body onload="populate()">
+   <h1>Marko Doroch's Fantasy Soccer Team</h1>
+   <div class="wrapper">
+      <div class="box" style="grid-row: 1 ; grid-column: 1 / span 2 ;">
+         <select id="selPlayer" onchange="Display()"></select>
+      </div>
+      <div class="box" style="grid-column: 3 ; grid-row: 1 / span 6 ;">
+         <img id="imgPlayer" style="height:360px" src="">
+      </div>
+      <div class="box">
+         Position
+      </div>
+      <div class="box">
+         <div id="divPosition">AAA</div>
+      </div>
+      <div class="box">
+         Birthdate
+      </div>
+      <div class="box">
+         <div id="divBirth">BBB</div>
+      </div>
+      <div class="box">
+         Country
+      </div>
+      <div class="box">
+         <div id="divCountry">CCC</div>
+      </div>
+      <div class="box">
+         Height
+      </div>
+      <div class="box">
+         <div id="divHeight">DDD</div>
+      </div>
+      <div class="box">
+         Team
+      </div>
+      <div class="box">
+         <div id="divTeam">EEE</div>
+      </div>
+      <div class="box" style="grid-column: 1 / span 3 ;">
+         <button onclick="AddPlayer()">Add Player</button>
+         <br />
+         <textarea cols="60" rows="5" id="taList" readonly></textarea>
+         <div id="divOverall">Overall Count:</div>
+      </div>
+   </div>
+   <script>
+      //Marko Doroch
+      //Lionel Messi|Forward|June 24, 1987|Argentina|5ft7in|Paris Saint-Germain|Messi.PNG
+      let player = [];
+      let position = [];
+      let birthDate = [];
+      let country = [];
+      let height = [];
+      let team = [];
+      let imagePlayer = [];
+
+      function populate() {
+         fetch('WorldCup.txt')
+            .then(function (response) {
+               return response.text();
+            })
+            .then(function (data) {
+               let text = data;
+               let qStuff = text.split(/\r\n/);
+
+               for (let i = 0; i < qStuff.length; i++) {
+                  let pieces = qStuff[i].split("|");
+                  player[i] = pieces[0];
+                  position[i] = pieces[1];
+                  birthDate[i] = pieces[2];
+                  country[i] = pieces[3];
+                  height[i] = pieces[4];
+                  team[i] = pieces[5];
+                  imagePlayer[i] = pieces[6];
+               }
+               //console.log(player);
+               //console.log(position);
+               //console.log(birthDate);
+               //console.log(country);
+               //console.log(height);
+               //console.log(team);
+               //console.log(imagePlayer);
+
+               let mySelect = document.getElementById("selPlayer");
+               for (let i = 0; i < player.length; i++) {
+                  let myOption = document.createElement("option");
+                  myOption.text = player[i];
+                  myOption.value = i;
+                  mySelect.appendChild(myOption);
+               }
+               mySelect.dispatchEvent(new Event("change"));
+               Display();
+            })
+            .catch(function (error) {
+               console.log(error);
+            })
+      }
+
+      function Display() {
+         let Index = document.getElementById("selPlayer").value;
+         document.getElementById("divPosition").innerHTML = position[Index];
+         document.getElementById("divBirth").innerHTML = birthDate[Index];
+         document.getElementById("divCountry").innerHTML = country[Index];
+         document.getElementById("divHeight").innerHTML = height[Index];
+         document.getElementById("divTeam").innerHTML = team[Index];
+         document.getElementById("imgPlayer").src = imagePlayer[Index];
+      }
+
+      let totalPlayers = 0;
+      let totalForwards = 0;
+      let totalMid = 0;
+      let totalDefenders = 0;
+      let totalGoal = 0;
+      function AddPlayer() {
+         let listIndex = document.getElementById("selPlayer").value;
+         document.getElementById("taList").value += 
+         player[listIndex] + " " + position[listIndex] + "\n"
+         totalPlayers++;
+         if (position[listIndex] == "Goalkeeper") {
+            totalGoal++;
+         } else if (position[listIndex] == "Midfielder") {
+            totalMid++;
+         } else if (position[listIndex] == "Forward") {
+            totalForwards++;
+         } else {
+            totalDefenders++;
+         }
+
+         document.getElementById("divOverall").innerHTML = 
+         "Overall Count: " + totalPlayers + " Goalkeepers: " + totalGoal + " Midfielders: " + totalMid + " Forwards: " + totalForwards + " Defenders: " + totalDefenders;
+      }
+   </script>
+</body>
+
+</html>

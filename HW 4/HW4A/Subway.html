@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Subway</title>
+    <style>
+        body {
+            background-color: goldenrod;
+            color: midnightblue;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+    </style>
+    <!--Marko Doroch-->
+</head>
+
+<body>
+    <h1>Welcome to <img src="subway-logo.png"></h1>
+    <img src="BLT.jpg" height="150px" id="imgSandwich" />
+    <br />
+    <select id="selType" onchange="ChangeImg() + ClearOut()">
+        <option value="BLT">BLT</option>
+        <option value="CCC">Cold Cut Combo</option>
+        <option value="SI">Spicy Italian</option>
+        <option value="T">Tuna</option>
+        <option value="SOT">Sweet Onion Teriyaki</option>
+    </select>
+    <br />
+    <select id="sandwichSize" onchange="ClearOut()">
+        <option value="Six">Six Inch</option>
+        <option value="Foot">Foot Long</option>
+    </select>
+    <br />
+    <label for="amount">Number:</label>
+    <input id="amount" type="number" value="" oninput="ClearOut()" />
+    <br />
+    <input id="btnCalc" type="button" value="Calculate Price" onclick="btnCalc_onclick()" />
+    <br />
+    <div id="Price1" style="border: medium solid black; width: 250px; height: 20px">&nbsp;</div>
+    <script>
+        //Marko Doroch
+        alert("$5 Any Regular Footlong All Subtember Long!");
+        //******************************************************************************************************************
+        function btnCalc_onclick() {
+            let sandwich = document.getElementById("selType").value;
+            let size = document.getElementById("sandwichSize").value;
+            let myAmount = parseFloat(document.getElementById("amount").value);
+            //alert(sandwich);
+            //alert(size);
+            //alert(myAmount);
+
+            //warn user if number is valid
+            if(isNaN(myAmount)) {
+                alert("Enter a valid number!")
+                return;
+            }else if(myAmount == 0){
+                alert("Enter a valid number!")
+                return;
+            }
+
+            //create a name for the price
+            let sandwichPrice;
+
+            //create a switch for the different sandwiches to their designated price
+            switch (sandwich) {
+                case "BLT":
+                    sandwichPrice = 3.50
+                    break;
+                case "CCC":
+                    sandwichPrice = 3.50
+                    break;
+                case "SI":
+                    sandwichPrice = 3.75
+                    break;
+                case "T":
+                    sandwichPrice = 4.50
+                    break;
+                case "SOT":
+                    sandwichPrice = 4.75
+                    break;
+            }
+
+            //set price to $5 if it's a foot long
+            if (size == "Foot"){
+                sandwichPrice = 5.00;
+            }
+            
+            //calculate
+            let total = sandwichPrice * myAmount
+
+            //return to div
+            document.getElementById("Price1").innerHTML = "$" + total.toFixed(2);
+        }
+        //******************************************************************************************************************
+        function ChangeImg() {
+            let sandwich = document.getElementById("selType").value;
+
+            //create a switch for the different sandwiches to their designated image
+            switch (sandwich) {
+                case "BLT":
+                    document.getElementById("imgSandwich").src = "BLT.jpg";
+                    break;
+                case "CCC":
+                    document.getElementById("imgSandwich").src = "ccc.jpg";
+                    break;
+                case "SI":
+                    document.getElementById("imgSandwich").src = "spcyital.jpg";
+                    break;
+                case "T":
+                    document.getElementById("imgSandwich").src = "tuna.jpg";
+                    break;
+                case "SOT":
+                    document.getElementById("imgSandwich").src = "soct.jpg";
+                    break;
+            }
+        }
+        //******************************************************************************************************************
+        function ClearOut() {
+            document.getElementById("Price1").innerHTML = "&nbsp;";
+        }
+        //******************************************************************************************************************
+    </script>
+
+</body>
+
+</html>

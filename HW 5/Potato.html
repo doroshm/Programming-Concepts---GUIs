@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's Potatoes</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: aqua;
+         color: #432109;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-gap: 5px;
+         width: 605px;
+         grid-template-columns: 300px 300px;
+         background-color: aqua;
+         color: #432109;
+         border-radius: 5px;
+      }
+
+      .box {
+         background-color: aqua;
+         color: #432109;
+         border-radius: 5px;
+         padding: 20px;
+         font-size: 1em;
+         border: solid aqua 1px;
+      }
+
+      #divB {
+         grid-column: 2;
+         grid-row: 1 / span 4;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Marko Doroch's Potatoes</h1>
+   <div class="wrapper">
+      <!--input size---------------------------------------------------------------------------------------------->
+      <div class="box" id="divA">
+         <label for="Size1">Size (5oz-12oz):</label>
+         <input id="Size1" type="number" value="" oninput="ClearOut()" />
+      </div>
+      <!--potato image---------------------------------------------------------------------------------------------->
+      <div class="box" id="divB">
+         <img src="potato.png">
+      </div>
+      <!--drop down menu---------------------------------------------------------------------------------------------->
+      <div class="box" id="divC">
+         <label for="toppingSel">Topping: </label>
+         <select id="toppingSel" onchange="ClearOut()">
+            <option value="0">Nothing</option>
+            <option value="100">Butter</option>
+            <option value="60">Sour Cream</option>
+            <option value="75">Chili</option>
+         </select>
+      </div>
+      <!--button---------------------------------------------------------------------------------------------->
+      <div class="box" id="divD">
+         <input id="btnCalories" type="button" value="Determine How Many Calories" onclick="btnCalories_onclick()" />
+      </div>
+      <!--div result------------------------------------------------------------------------------------------------>
+      <div class="box" id="divE">
+         <div id="divCalorie">&nbsp;</div>
+      </div>
+   </div>
+
+   <script>
+      //Marko Doroch
+      function btnCalories_onclick() {
+         document.getElementById("btnCalories").disabled = true;
+
+         let size = parseFloat(document.getElementById("Size1").value);
+         let toppingCal = document.getElementById("toppingSel").value;
+         //alert(size);
+         //alert(toppingCal);
+
+         if(isNaN(size)){
+            alert("Enter a number for the size!");
+            document.getElementById("Size1").value = "";
+            document.getElementById("Size1").focus();
+            return;
+         }else if(size > 12 || size < 5){
+            alert("Enter a size between 5 and 12!");
+            document.getElementById("Size1").value = "";
+            document.getElementById("Size1").focus();
+            return;
+         }
+         
+         
+         let toppingName;
+
+         switch (toppingCal) {
+            case "0":
+               toppingName = "nothing";
+               break;
+            case "100":
+               toppingName = "butter";
+               break;
+            case "60":
+               toppingName = "sour cream";
+               break;
+            case "75":
+               toppingName = "chili";
+               break;
+         }
+
+         //alert(toppingName);
+
+         Calories = 25 * size + parseFloat(toppingCal)
+
+         document.getElementById("divCalorie").innerHTML =
+            "A(n) " + size + " ounce potato topped with " + toppingName + " would be " + Calories + " calories" + "."
+      }
+
+      function ClearOut() {
+         document.getElementById("divCalorie").innerHTML = "&nbsp;";
+         document.getElementById("btnCalories").disabled = false;
+      }
+   </script>
+</body>
+
+</html>

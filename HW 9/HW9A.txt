@@ -1,0 +1,21 @@
+Homework 9 – Part A 
+
+Provide a brief definition of the following terms (in the interface 
+programming context):
+
+ Array - type of variable that can hold more than one value
+ Array element - that values of which go inside an array
+ Array index - position of said elements
+ Sort an array - sorts an array alphabetically ascending order
+ Search an array - used to find particular value(s) within an array through the find() feature using a function
+that specifies what you want to find
+ Instanstiate an array versus Initialize an array - Instanstiate: "new Array()" uses () and when a number is put in then it will return length; 
+Initialize: "array literal notation" uses [] and when a number is put in then it will be returned as an element
+(basically Instanstiate = how many elements; while, initialize = what are the elements)
+
+If you use a source (book or web site), cite your source. 
+ https://www.w3schools.com/js/js_arrays.asp
+ https://www.w3schools.com/js/js_array_sort.asp#gsc.tab=0
+ https://www.w3schools.com/jsref/jsref_find.asp#gsc.tab=0
+ https://www.w3docs.com/snippets/javascript/how-to-declare-and-initialize-an-array-in-javascript.html
+Email the document.

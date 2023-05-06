@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resturaunt Tip Calculator</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Resturaunt Tip Calculator</h1>
+    <p1>Type your bill total in the box, then choose what percent tip you want, and click calculate.</p1><br />
+    <label for="BillAmount">Enter Amount: </label>
+    <input id="BillAmount" type="number" value="" oninput="return BillAmount_onkeypress()"/><br />
+    <span><p1>Select Tip Percent:</p1></span><select id="selTip" onchange="return selTip_change()">
+        <option value=".10">10%</option>
+        <option value=".15">15%</option>
+        <option value=".20">20%</option>
+        <option value=".25">25%</option>
+        <option value=".30">30%</option>
+        <option value=".35">35%</option>
+    </select><br />
+    <input id="btnCalc" type="button" value="Calculate" onclick="return btnCalculate_onclick()" /><br />
+    <div id="Calculation" style="border: medium solid black; width: 150px;">&nbsp;</div>
+    <script>
+        function btnCalculate_onclick(){
+            let fromBill;
+            fromBill = document.getElementById("BillAmount").value;
+            let fromSelect;
+            fromSelect = document.getElementById("selTip").value;
+            let total = fromBill*(1+fromSelect);
+            //2 decimal place
+            document.getElementById("Calculation").innerHTML = '$' + total.toFixed(2);
+        }
+        function selTip_change(){
+            document.getElementById("Calculation").innerHTML = "&nbsp;";
+            // &nbsp; stands for non-breaking space (left this for future reference)
+        }
+        function BillAmount_onkeypress(){
+            document.getElementById("Calculation").innerHTML = "&nbsp;";
+        }
+    </script>
+</body>
+
+</html>

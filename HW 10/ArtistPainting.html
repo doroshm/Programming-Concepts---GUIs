@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spongebob Characters</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            align-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="btnCharacter()">
+    <h1>Spongebob Characters</h1>
+    <img id="img" src="" style="height: 400px;">
+    <div id="divName">---</div>
+    <button id="btnName" onclick="btnName()">Reveal Name</button>
+    <button id="btnCharacter" onclick="btnCharacter()">New Characeter</button>
+    <script>
+        //Marko Doroch
+        let imgSrc = ["MrKrabs.png","Patrick.png","Plankton.png","Sandy.png","Spongebob.png","Squidward.png"];
+        let charName = ["Mr. Krabs","Patrick","Plankton","Sandy","Spongebob","Squidward"];
+        let index;
+        
+        function btnCharacter() {
+            index = Math.floor(Math.random() * 6);
+            document.getElementById("btnName").disabled = false;
+            document.getElementById("img").src = imgSrc[index];
+            document.getElementById("divName").innerHTML = "---";
+        }
+
+        function btnName() {
+            document.getElementById("divName").innerHTML = charName[index];
+            document.getElementById("btnName").disabled = true;
+        }
+
+    </script>
+</body>
+</html>

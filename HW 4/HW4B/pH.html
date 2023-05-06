@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's pH-o-meter</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            color: black;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        option:checked {
+            font-weight: bold;
+        }
+    </style>
+    <!--Marko Doroch-->
+</head>
+
+<body>
+    <h1>Marko Doroch's pH-o-meter</h1>
+
+    <img src="pH.png" height="200px" id="imgPh" onmouseover="phscale2()" onmouseout="pH1()" />
+    <br />
+
+    <select id="selType" oninput="displayPH()">
+        <option value="0">Hydrochloric acid</option>
+        <option value="1">Battery acid</option>
+        <option value="2.0">Lemon juice</option>
+        <option value="2.2">Vinegar</option>
+        <option value="3.0">Apples</option>
+        <option value="4.0">Wine and beer</option>
+        <option value="4.5">Tomatoes</option>
+        <option value="6.6">Milk</option>
+        <option value="7.0">Pure water</option>
+        <option value="7.4">Human blood</option>
+        <option value="8.3">Baking soda</option>
+        <option value="10.5">Milk of magnesia</option>
+        <option value="11.0">Ammonia</option>
+        <option value="12.4">Lime</option>
+        <option value="13">Lye</option>
+        <option value="14">Sodium Hydroxide</option>
+    </select>
+    <br />
+
+    <label id="phNum">Has a pH of 0</label>
+    <br />
+
+    <label for="phInput">Enter a pH:</label>
+    <input id="phInput" type="number" value="" oninput="ClearOut()" />
+    <br />
+
+    <input id="btnPH" type="button" value="Determine category (acid or base -- weak or strong)"
+        onclick="btnPH_onclick()" />
+    <br />
+
+    <div id="determinePH" style="border: medium solid black; width: 250px; height: 20px">&nbsp;</div>
+
+    <script>
+        //Marko Doroch
+        function btnPH_onclick() {
+            let userPH = parseFloat(document.getElementById("phInput").value);
+            //alert(userPH);
+
+            if (isNaN(userPH)) {
+                alert("You forgot to enter a pH!")
+                document.getElementById("phInput").focus();
+                return;
+            }
+
+            if (userPH > 14 || userPH < 0) {
+                alert("Enter a valid pH!")
+                document.getElementById("phInput").focus();
+                return;
+            }
+
+            let category;
+
+            if (userPH <= 14 && userPH > 10.5) {
+                category = "strong base";
+            }
+            else if (userPH <= 10.5 && userPH >= 7.1) {
+                category = "weak base";
+            }
+            else if (userPH < 7.1 && userPH > 6.9) {
+                category = "neutral";
+            }
+            else if (userPH <= 6.9 && userPH >= 3.5) {
+                category = "weak acid";
+            }
+            else {
+                category = "strong acid";
+            }
+            //alert(category);
+
+            document.getElementById("determinePH").innerHTML = "A pH of " + userPH.toFixed(1) + " is a " + category + ".";
+        }
+
+        function displayPH() {
+            let pH = parseFloat(document.getElementById("selType").value);
+            //alert(pH);
+            document.getElementById("phNum").innerHTML = "Has a pH of " + pH;
+        }
+
+        function pH1() {
+            document.getElementById("imgPh").src = "pH.png";
+        }
+
+        function phscale2() {
+            document.getElementById("imgPh").src = "phscale.gif";
+        }
+
+        function ClearOut() {
+            document.getElementById("determinePH").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

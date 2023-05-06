@@ -1,0 +1,35 @@
+Homework 5 – Part A 
+Provide a brief definition of the following terms (in the interface 
+programming context):
+-----------------------------------------------------------------------------------------------------
+ Self-documenting - refers to code that does not require 
+any comments to help the user understand, the code already
+has variable names set to things close to human speech. 
+-----------------------------------------------------------------------------------------------------
+ Global variable - refers to a variable that can
+be called upon anywhere from a script or function, without
+the need to set local variables everytime. 
+-----------------------------------------------------------------------------------------------------
+ Local variable - refers to a variable that can
+only be accessed within the confines of its own local
+function. 
+-----------------------------------------------------------------------------------------------------
+ Scope - refers to the visibility of a variable within
+the specified location.
+-----------------------------------------------------------------------------------------------------
+ Syntax error - an error within a code that stops it from
+working like it was intended, like misspelling, and can be 
+caught before running the code using a compiler or human fix. 
+-----------------------------------------------------------------------------------------------------
+ Runtime error - even without syntax errors, and error is only 
+found after running the code, and something is wrong with a calculation
+or order of how your code is ran, and sometimes harder to find. 
+-----------------------------------------------------------------------------------------------------
+If you use a source (book or web site), cite your source.
+Email the document.
+
+ https://hackbrightacademy.com/blog/writing-self-documenting-code/#:~:text=What%20is%20self%2Ddocumenting%20code,not%20heard%20the%20term%20before.
+ https://www.w3schools.com/
+ https://www.techopedia.com/definition/13391/syntax-error
+ https://rollbar.com/blog/most-common-java-runtime-errors/#:~:text=A%20runtime%20error%20occurs%20when,when%20the%20application%20is%20running.
+

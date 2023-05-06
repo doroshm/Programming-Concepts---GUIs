@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inchworm</title>
+    <style>
+        body {
+            background-color: black;
+            color: greenyellow;
+        }
+    </style>
+</head>
+
+<body onload="Populate()">
+    <h1>Inchworm</h1>
+    <label>How many segments should your inch worm have? </label>
+    <select id="selNum" onchange="MakeInchWorm()"></select>
+    <br />
+
+    <div id="divWorm">bruh</div>
+
+    <script>
+        function Populate() {
+            let mySelect = document.getElementById("selNum");
+            for (let i = 2; i <= 10; i++) {
+                let myOption = document.createElement("option");
+                myOption.text = i; //what user sees
+                myOption.value = i; //what coder uses behind the scenes
+                mySelect.appendChild(myOption);
+            }
+
+            let pick = Math.floor(Math.random()*10)+1;
+            //alert(pick);
+            while (pick == 1){
+                //alert("problem")
+                pick = Math.floor(Math.random()*10)+1;
+            }
+            mySelect.value = pick;
+            mySelect.dispatchEvent(new Event("change"));
+        }
+
+        function MakeInchWorm() {
+            document.getElementById("divWorm").innerHTML = "";
+            let myNumber = document.getElementById("selNum").value;
+            let myDiv = document.getElementById("divWorm");
+            let myWorm = document.createElement("worm");
+            let myRow = document.createElement("tr");
+            myWorm.appendChild(myRow);
+            let myCell = document.createElement("td");
+
+            //first cell in the row
+            let myImageHead = document.createElement("img");
+            myImageHead.src = "InchwormHead.gif";
+            myImageHead.style.height = "200px"; //this changes
+            myCell.appendChild(myImageHead);
+            myRow.appendChild(myCell);
+
+            let currentHeight = 200;
+
+            for (let i = 1; i <= myNumber - 1; i++) {
+                //the rest of cells in the row
+                let myImageSeg = document.createElement("img");
+                myImageSeg.src = "InchwormSegment.gif";
+
+                myDepreciation = currentHeight - (currentHeight * .90) //this took forever to figure out :(
+                
+                currentHeight = currentHeight - myDepreciation;
+                //alert(currentHeight);
+
+                myImageSeg.style.height = currentHeight + "px";
+
+                myCell.appendChild(myImageSeg);
+                myRow.appendChild(myCell);
+            }
+
+            myDiv.appendChild(myWorm);
+        }
+    </script>
+</body>
+
+</html>

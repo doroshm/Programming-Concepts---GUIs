@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Marko Doroch's Construction Paper</title>
+	<!--Marko Doroch-->
+	<style>
+		body {
+			text-align: center;
+			background-color: black;
+			color: white;
+		}
+
+		.wrapper {
+			text-align: left;
+			display: grid;
+			grid-gap: 5px;
+			width: 405px;
+			grid-template-columns: 200px 200px;
+			border-radius: 5px;
+			/* justify-content: center; */
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.box {
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 1em;
+			border: solid white 1px;
+		}
+
+		h3 {
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-top: 0.5em;
+			margin-bottom: 0.25em;
+		}
+
+		button {
+			width: 200px;
+			font-size: 1.2em;
+			font-weight: bold;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Marko Doroch's Construction Paper</h1>
+	<div class="wrapper">
+		<div class="box">
+			<h3>Sheet size</h3>
+			<input id="radio_1" type="radio" name="R1" value="0" onchange="Clear()" checked/>
+			<label for="radio_1">6 by 6</label><br />
+			<input id="radio_2" type="radio" name="R1" value="1" onchange="Clear()" />
+			<label for="radio_2">9 by 12</label><br />
+			<input id="radio_3" type="radio" name="R1" value="2" onchange="Clear()" />
+			<label for="radio_3">12 by 18</label><br />
+			<input id="radio_4" type="radio" name="R1" value="3" onchange="Clear()" />
+			<label for="radio_4">18 by 18</label><br />
+		</div>
+		<div class="box" style="grid-column: 2; grid-row: 1 /span 2;">
+			<h3>Colors</h3>
+			<input id="checkbox_1" type="checkbox" name="chColor" value="Black" onchange="Clear()" />
+			<label for="checkbox_1">Black</label><br />
+			<input id="checkbox_2" type="checkbox" name="chColor" value="White" onchange="Clear()" checked/>
+			<label for="checkbox_2">White</label><br />
+			<input id="checkbox_3" type="checkbox" name="chColor" value="Red" onchange="Clear()" />
+			<label for="checkbox_3">Red</label><br />
+			<input id="checkbox_4" type="checkbox" name="chColor" value="Orange" onchange="Clear()" />
+			<label for="checkbox_4">Orange</label><br />
+			<input id="checkbox_5" type="checkbox" name="chColor" value="Yellow" onchange="Clear()" />
+			<label for="checkbox_5">Yellow</label><br />
+			<input id="checkbox_6" type="checkbox" name="chColor" value="Green" onchange="Clear()" />
+			<label for="checkbox_6">Green</label><br />
+			<input id="checkbox_7" type="checkbox" name="chColor" value="Blue" onchange="Clear()" />
+			<label for="checkbox_7">Blue</label><br />
+			<input id="checkbox_8" type="checkbox" name="chColor" value="Purple" onchange="Clear()" />
+			<label for="checkbox_8">Purple</label><br />
+			<input id="checkbox_9" type="checkbox" name="chColor" value="Brown" onchange="Clear()" />
+			<label for="checkbox_9">Brown</label><br />
+		</div>
+		<div class="box">
+			<h3>Number of Sheets</h3>
+			<input id="radio_5" type="radio" name="R2" value="0" onchange="Clear()" checked/>
+			<label for="radio_5">25 sheets</label><br />
+			<input id="radio_6" type="radio" name="R2" value="1" onchange="Clear()" />
+			<label for="radio_6">50 sheets</label><br />
+			<input id="radio_7" type="radio" name="R2" value="2" onchange="Clear()" />
+			<label for="radio_7">100 sheets</label><br />
+			<input id="radio_8" type="radio" name="R2" value="3" onchange="Clear()" />
+			<label for="radio_8">200 sheets</label><br />
+		</div>
+		<div class="box" style="grid-column: 1 /span 2; text-align: center;">
+			<button id="btnOrder" onclick="Order()">PLACE ORDER</button>
+		</div>
+		<div class="box" style="grid-column: 1 /span 2;" id="divOrder">Your Order: </div>
+		<div id="divTotal" class="box" style="grid-column: 1 / span 2 ;">
+			Total: ----
+		</div>
+	</div>
+	<script>
+		//Marko Doroch
+		let sheet_sizes = ["6 by 6 inch", "9 by 12 inch", "12 by 18 inch", "18 by 18 inch"]
+		let sheet_prices = [1.75, 2.25, 2.75, 3.25]
+		let sheet_numbers = ["25 sheets", "50 sheets", "100 sheets", "200 sheets"]
+		let sheet_factors = [1, 1.9, 3.6, 7]
+		let colors = ["Black", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown"]
+		let total = 0;
+
+		function Order() {
+			document.getElementById("btnOrder").disabled = true;
+			document.getElementById("divOrder").innerHTML = "Your order:";
+			let userChoices = []; //[0] = Sheet, [1] = Number
+
+			for (let i = 1; i <= 2; i++) {
+				let radios = document.getElementsByName("R" + i);
+				for (let j = 0; j < radios.length; j++) {
+					if (radios[j].checked) {
+						userChoices.push(radios[j].value);
+					}
+				}
+			}
+
+			if (userChoices.length < 2) {
+				alert("You forgot to choose a sheet size or a number of sheets!");
+				return;
+			}
+
+			//console.log(total)
+			//alert(userChoices)
+
+			document.getElementById("divOrder").innerHTML +=
+				"<br/>" + sheet_sizes[userChoices[0]] + " ($" + sheet_prices[userChoices[0]] + ") <br/>" +
+				sheet_numbers[userChoices[1]] + " (factor: " + sheet_factors[userChoices[1]] + ") <br/>";
+
+			let color = document.getElementsByName("chColor");
+			let userColors = [];
+			for (let i = 0; i < color.length; i++) {
+				if (color[i].checked) {
+					userColors.push(color[i].value);
+					if (userColors.length == 1) {
+						document.getElementById("divOrder").innerHTML +=
+							"<br/>Colors:";
+					}
+					document.getElementById("divOrder").innerHTML +=
+						"<br/>" + color[i].value;
+				}
+			}
+
+			if (userColors.length == "0") {
+				alert("You forgot to choose a color!");
+				document.getElementById("divOrder").innerHTML = "";
+				return;
+			}
+
+			total = sheet_prices[userChoices[0]] * sheet_factors[userChoices[1]] * userColors.length;
+		
+			document.getElementById("divTotal").innerHTML = "Total: $" + total.toFixed(2);
+		}
+
+		function Clear() {
+			total = 0;
+			document.getElementById("btnOrder").disabled = false;
+			document.getElementById("divOrder").innerHTML = "";
+			document.getElementById("divTotal").innerHTML = "---";
+		}
+	</script>
+</body>
+
+</html>

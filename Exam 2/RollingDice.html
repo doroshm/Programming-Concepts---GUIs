@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Rolling Dice</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's Rolling Dice</h1>
+    <label for="mySel">What is the target for rolling two dice? </label>
+    <select id="mySel" onchange="ClearOut()"></select>
+    <br />
+    <button id="btnSimulation" onclick="btnSimulation_onclick()">Perform Simulation</button>
+    <div id="divResult">---</div>
+    <script>
+        //Marko Doroch
+        function populate() {
+            let mySelect = document.getElementById("mySel");
+            for (let i = 2; i <= 12; i++) {
+                let myOption = document.createElement("option");
+                myOption.text = i;
+                myOption.value = i;
+                mySelect.appendChild(myOption);
+            }
+        }
+
+        function btnSimulation_onclick() {
+            document.getElementById("divResult").innerHTML = "";
+            document.getElementById("btnSimulation").disabled = true;
+            let target = document.getElementById("mySel").value;
+            let answer = 0;
+            for (let i = 1; i <= 100; i++) {
+                let roll1 = Math.floor(Math.random() * 6) + 1;
+                img = document.createElement("img");
+                img.src = "Dice/Die" + roll1 + ".gif"
+                img.style.height = "40px";
+                divResult.appendChild(img);
+
+                let roll2 = Math.floor(Math.random() * 6) + 1;
+                img = document.createElement("img");
+                img.src = "Dice/Die" + roll2 + ".gif"
+                img.style.height = "40px";
+                divResult.appendChild(img);
+                //console.log(i);
+
+                if (roll1 + roll2 == target) {
+                    hit = document.createElement("img");
+                    hit.src = "Dice/Target.png"
+                    hit.style.height = "40px";
+                    divResult.appendChild(hit);
+
+                    answer += 1;
+                }
+
+                br = document.createElement("br");
+                br.value = "<br/>"
+                divResult.appendChild(br);
+            }
+            document.getElementById("divResult").innerHTML +=
+                "You hit the target " + answer + " times."
+        }
+
+        function ClearOut() {
+            document.getElementById("btnSimulation").disabled = false;
+            document.getElementById("divResult").innerHTML = "---"
+        }
+    </script>
+</body>
+
+</html>

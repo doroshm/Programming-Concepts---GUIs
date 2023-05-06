@@ -1,0 +1,9 @@
+let sheet_sizes = ["6 by 6 inch", "9 by 12 inch", "12 by 18 inch", "18 by 18 inch"]
+ 
+let sheet_prices = [1.75, 2.25, 2.75, 3.25]
+
+let sheet_numbers = ["25 sheets", "50 sheets", "100 sheets", "200 sheets"]
+
+let sheet_factors = [1, 1.9, 3.6, 7]
+
+let colors = ["Black", "White", "Red", "Orange", "Yellow", "Green",  "Blue", "Purple", "Brown"]

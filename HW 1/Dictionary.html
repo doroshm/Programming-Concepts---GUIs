@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <style>
+        body {
+            background-color: gainsboro;
+            color: black;
+            padding: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dictionary</h1>
+    <p1>This is the definition of words from the homework.</p1>
+    <p1><div>---------------------------------------------------------------------------------------------</div></p1>
+    <div>
+        <input type="button" name="btnElement1" id="btnElement1" value="Element*" onclick="return Element1();">
+        <span id="spElement1"></span>
+    </div>
+    <div>
+        <input type="button" name="btnEventDriven" id="btnEventDriven" value="Event Driven" onclick="return EventDriven();">
+        <span id="spEventDriven"></span>
+    </div>
+    <div>
+        <input type="button" name="btnIDE" id="btnIDE" value="IDE" onclick="return IDE();">
+        <span id="spIDE"></span>
+    </div>
+    <div>
+        <input type="button" name="btnProperty" id="btnProperty" value="Property*" onclick="return Property();">
+        <span id="spProperty"></span>
+    </div>
+    <div>
+        <input type="button" name="btnStatement" id="btnStatement" value="Statement*" onclick="return Statement();">
+        <span id="spStatement"></span>
+    </div>
+    <div>
+        <input type="button" name="btnVariable" id="btnVariable" value="Variable*" onclick="return Variable();">
+        <span id="spVariable"></span>
+    </div>
+    <p1><div>---------------------------------------------------------------------------------------------</div></p1>
+
+    <script>
+        function Element1() {
+            document.getElementById("spElement1").innerHTML = "part of a webpage, in either XML or HTML, where it can have some kind of information like data, text, image, or etc. Usually contains opening tag, attribute, text content, then closing tag. 1";
+        }
+        function EventDriven() {
+            document.getElementById("spEventDriven").innerHTML = "the basic definition entails that a program of some sort can decide on what to do next when it allows the consumer to create feedback, like a button etc. Event is referring to a message or notification that is sent back to the program. 2";
+        }
+        function IDE() {
+            document.getElementById("spIDE").innerHTML = "abbreviation for integrated development environment where a specific software combines multiple tools and coding languages to make development a lot simpler, like Visual Studio Code. 3";
+        }
+        function Property() {
+            document.getElementById("spProperty").innerHTML = "type of characteristic which is correlated with a certain value to give it a specific look or function within a browser. 4";
+        }
+        function Statement() {
+            document.getElementById("spStatement").innerHTML = "used for various things like controlling flow, declaring variables, functions, etc. Can span over multiple lines, or even include multiple statements within a single line with proper syntax. Basically, a specific line of code which gives a certain task. Ex: return, break, var, let, function, while. 5";
+        }
+        function Variable() {
+            document.getElementById("spVariable").innerHTML = "vessel used to store information with a program, which can be altered if need be. Can be declared by the coder or be stored by a user if asked. Does not need to be a number but can also be a name. 6";
+        }
+    </script>
+</body>
+
+</html>

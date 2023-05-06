@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Array</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Grade Array</h1>
+    <label>Choose the grade: </label>
+    <select id="selGrade" onchange="showInfo()"></select>
+    <br/>
+    <div id="divInfo"></div>
+    <script>
+        //Marko Doroch
+        let letterGrade = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"];
+        let weightGrade = [4.0, 3.667, 3.333, 3.0, 2.667, 2.333, 2.0, 1.667, 1.333, 1.0, 0.667, 0]
+
+        function populate() {
+            let mySelect = document.getElementById("selGrade");
+            for (let i = 0; i < letterGrade.length; i++) {
+                let myOption = document.createElement("option");
+                myOption.text = letterGrade[i];
+                myOption.value = i;
+                mySelect.appendChild(myOption);
+            }
+            mySelect.dispatchEvent(new Event("change"));
+        }
+        
+        function showInfo() {
+            document.getElementById("divInfo").innerHTML = "";
+            let indexGrade = document.getElementById("selGrade").value;
+
+            document.getElementById("divInfo").innerHTML = "A grade of " + letterGrade[indexGrade] +
+            " has a weight of " + weightGrade[indexGrade];
+        }
+    </script>
+</body>
+
+</html>

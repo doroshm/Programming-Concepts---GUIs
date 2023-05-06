@@ -1,0 +1,23 @@
+Homework 6 – Part A 
+Provide a brief definition of the following terms (in the interface 
+programming context):
+
+ Loop - used to run code multiple times, where each time it runs
+it uses a different value
+ Iteration - the name for each different execution of code when ran
+over multiple times until the final goal is reached
+ Infinite loop - often refered to as while loop, where a code will
+run forever until a condition is true
+ Off-by-one error - when using loops, it is possible to make a mistake
+where the boundaries given in the loop is one too many or one too few
+ Increment/Decrement - either adding 1 or subtracting 1 from a value,
+useful for loops when trying to meet a certain boundary
+
+Sources: 
+https://www.w3schools.com/js/js_loop_for.asp#gsc.tab=0
+https://www.techopedia.com/definition/3821/iteration#:~:text=Iteration%2C%20in%20the%20context%20of,it%20is%20called%20an%20iteration.
+https://www.w3schools.com/js/js_loop_while.asp
+https://en.wikipedia.org/wiki/Off-by-one_error#:~:text=An%20off%2Dby%2Done%20error,too%20many%20or%20too%20few.
+https://press.rebus.community/programmingfundamentals/chapter/increment-and-decrement-operators/
+
+Email the document.

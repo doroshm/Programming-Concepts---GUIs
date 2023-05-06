@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: orange;
+            color: black;
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body onload="Populate()">
+    <h1>Factorial</h1>
+    <div>Choose a number to find the factorial of.</div>
+    <select onchange="Math()" id="selNum" style="font-size: 40px"></select>
+    <div id="divFactorial">0! = 1</div>
+
+    <script>
+        //Marko Doroch
+        function Populate() {
+            let mySelect = document.getElementById("selNum");
+            for (let i = 0; i <= 10; i++) {
+                let myOption = document.createElement("option");
+                myOption.text = i; //what user sees
+                myOption.value = i; //what coder uses behind the scenes
+                mySelect.appendChild(myOption);
+            }
+            
+            //let pick = Math.floor(Math.random() * 10) + 1; didn't work for some reason
+            //alert(pick);
+
+            //mySelect.value = pick;
+            //mySelect.dispatchEvent(new Event("change"));
+        }
+
+        function Math() {
+            document.getElementById("divFactorial").innerHTML = "";
+            let myNumber = document.getElementById("selNum").value;
+            let term = 1;
+
+            document.getElementById("divFactorial").innerHTML += myNumber + "! = ";
+
+            for (let i = 1; i <= myNumber; i++) {
+                if (i == myNumber) {
+                    document.getElementById("divFactorial").innerHTML += i + " = ";
+                } else {
+                    document.getElementById("divFactorial").innerHTML += i + " * ";
+                }
+            }
+
+            for (let i = 1; i <= myNumber; i++) {
+                term = i * term;
+            }
+
+            document.getElementById("divFactorial").innerHTML += term;
+        }
+    </script>
+</body>
+
+</html>

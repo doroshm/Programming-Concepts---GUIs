@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Dr. Suess Books</title>
+    <!--Marko Doroch-->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        span {
+            font-style: italic;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-gap: 1px;
+            grid-template-columns: 200px 200px 200px;
+            width: 602px;
+        }
+
+        .box {
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 1em;
+            border: solid white 1px;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's Dr. Suess Books</h1>
+    <div class="wrapper">
+        <div class="box" style="grid-column: 1 /span 2; grid-row: 1;">
+            <select id="selBook" onchange="Display()"></select>
+        </div>
+        <div class="box" style="grid-column: 3; grid-row: 1 /span 4;">
+            <img width="190px" id="imgBook" src="">
+        </div>
+        <div class="box">Year</div>
+        <div class="box">
+            <div id="divYear">AAA</div>
+        </div>
+        <div class="box">Pages </div>
+        <div class="box">
+            <div id="divPages">BBB</div>
+        </div>
+        <div class="box">Price</div>
+        <div class="box">
+            <div id="divPrice">CCC</div>
+        </div>
+        <div class="box" style="grid-column: 1 / span 3">
+            <div id="divQuote">DDD</div>
+        </div>
+        <div class="box" style="grid-column: 1 / span 3">
+            <div id="divDesc">EEE</div>
+        </div>
+        <div class="box">
+            How many
+        </div>
+        <div class="box">
+            <input id="inHowMany" type="number" min="1" max="10" step="1" value="1">
+        </div>
+        <div class="box">
+            <button id="btnAdd" onclick="Cart()">Add to cart</button>
+        </div>
+        <div class="box" style="grid-column: 1 / span 3">
+            <textarea id="taCart" cols="60" rows="5" readonly></textarea>
+        </div>
+        <div class="box" style="grid-column: 2; grid-row: 9;">Total: </div>
+        <div class="box" style="grid-column: 3; grid-row: 9;" id="divTotal">$0.00</div>
+    </div>
+</body>
+<script src="Suess.js"></script>
+<script>
+    //Marko Doroch
+    let SuessInfo = [];
+    function populate() {
+        fetch('Seuss.txt')
+            .then(function (response) {
+                return response.text();
+            })
+
+            .then(function (data) {
+                let text = data;
+                let qStuff = text.split(/\r\n/);
+                let mySelect = document.getElementById("selBook");
+
+                for (let i = 0; i < qStuff.length; i++) {
+                    let pieces = qStuff[i].split("|");
+                    SuessInfo[i] = new classSuess(pieces[0], pieces[1], pieces[2], pieces[3], pieces[4], pieces[5], pieces[6], pieces[7]);
+
+                    let myOption = document.createElement("option");
+                    myOption.text = SuessInfo[i].rank + ". " + SuessInfo[i].title;
+                    myOption.value = i;
+                    mySelect.appendChild(myOption);
+                }
+
+                mySelect.dispatchEvent(new Event("change"));
+                Display();
+            })
+
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    function Display() {
+        let index = document.getElementById("selBook").value;
+        document.getElementById("divYear").innerHTML = SuessInfo[index].year;
+        document.getElementById("divPages").innerHTML = SuessInfo[index].pages;
+        document.getElementById("divPrice").innerHTML = "$" + SuessInfo[index].price;
+        document.getElementById("divQuote").innerHTML = SuessInfo[index].quote;
+        document.getElementById("divDesc").innerHTML = SuessInfo[index].desc;
+        document.getElementById("imgBook").src = SuessInfo[index].image;
+    }
+
+    let total = 0;
+    function Cart() {
+        let howMany = parseFloat(document.getElementById("inHowMany").value);
+        let index = document.getElementById("selBook").value;
+        total += parseFloat(SuessInfo[index].price) * howMany;
+        document.getElementById("divTotal").innerHTML = "$" + total.toFixed(2);
+        document.getElementById("taCart").value +=
+            howMany + " --- " + SuessInfo[index].title + " (@" + SuessInfo[index].price + ")\n";
+        document.getElementById("inHowMany").value = 1;
+    }
+</script>
+
+</html>
