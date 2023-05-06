@@ -1,0 +1,92 @@
+{
+   "cartoons": [
+      {
+         "Title": "Attack on Titan",
+         "Network": "Adult Swim",
+         "OrigArirDate": " 2013-Present",
+         "Description": "When man-eating Titans first appeared 100 years ago, humans found safety behind massive walls that stopped the giants in their tracks. But the safety they have had for so long is threatened when a colossal Titan smashes through the barriers, causing a flood of the giants into what had been the humans' safe zone. During the carnage that follows, soldier Eren Jaeger sees one of the creatures devour his mother, which leads him to vow that he will kill every Titan. He enlists some friends who survived to help him, and that group is humanity's last hope for avoiding extinction at the hands of the monsters.",
+         "Image": "attackOnTitan.jpg",
+         "Rank": 11
+      },
+      {
+         "Title": "Neon Genesis Evangelion",
+         "Network": "Cartoon Network",
+         "OrigArirDate": "1995-1996",
+         "Description": "If you were to ask the anime fanatics here at IGN what our favorite anime series of all time would be, we would answer Neon Genesis Evangelion. Why, you ask? Because no other anime series has been able to capture our attention with an intelligent adult sci-fi story that borrows heavily from religion, psychology and philosophy, while somehow meshing it with the angst-ridden teenage characters which have become a staple of the genre.The main premise of Evangelion follows young Shinji Ikari as he is forced to deal with the awkwardness of maturity, his daddy issues and alienation, all while being placed in charge of a giant robotic combat machine that is necessary to fight off the evil invading Angels. Staying introspective, the series prefers to analyze the pain of Shinji and the other children like him, rather than creating a spectacle out of the grandiose sci-fi plot. While the show is certainly complicated, and the ending is less than stellar, the bulk of the series has set a benchmark in anime programming which has yet to be surpassed.",
+         "Image": "Evangelion.jpg",
+         "Rank": 10
+      },
+      {
+         "Title": "The Flintstones",
+         "Network": "ABC",
+         "OrigArirDate": "1960-1966",
+         "Description": "In 1960, Hanna-Barbera Productions broke the animation mold and launched the cartoon into primetime glory -- the toon previously occupied only the realm of kiddie programming hours. With the arrival of The Flintstones, however, the path was paved for such eventual success stories as The Simpsons and Family Guy. You know the drill -- Working-class hero Fred Flintstone spends his days making a buck as a 'bronto crane operator' at Slate Rock and Gravel Company. Dearly in love with his barefoot (and eventually pregnant) wife Wilma, Fred lives next door to his best friend, the dimwitted Barney Rubble, and his wife Betty. Come to think of it, they were all barefoot... Oh, didn't we mention that The Flintstones is set around the year 10,000 B.C.? No, not the 1950s -- you're thinking of The Honeymooners, which is a completely understandable mistake. Regardless, the tale of Fred and his extended family (Pebbles and Bamm-Bamm would join the crew eventually, and let's not forget Dino and Hoppy) held the attention of America for six years of original content, before entering the immortal annals of syndication. A plethora of spin-offs, movies, and specials would also follow.",
+         "Image": "Flintsones.jpg",
+         "Rank": 9
+      },
+      {
+         "Title": " Futurama",
+         "Network": "Comedy Central",
+         "OrigArirDate": "1999-2003 & 2008-Present",
+         "Description": "The redheaded stepchild of Simpsons creator Matt Groening, Futurama nonetheless remains near and dear to the hearts of several of IGN's editors. A futuristic sitcom that was a cross between The Jetsons and The Simpsons, the adventures of the dimwitted Fry, mono-eyed Leela, drunk and disorderly robot Bender, and all the rest of the Planet Express crew aren't just often hilarious -- they're also loaded with references that will make the average sci-fi and genre fan feel smart. And isn't that what life is all about in the end? Feeling smart? From the darker strains of the early episodes (suicide booths?!) to familiar staples (the recurring robotic and evil Santa of the future, the 'Anthology of Interest' segments which are Futurama's version of 'Treehouse of Horror,' various and sundry disembodied heads) and right on up to the post-cancellation resurrected adventures that have been making the DTV and Comedy Central rounds lately, Futurama is, to paraphrase Fry, 'like a party in my mouth and everyone's throwing up.' Well, actually it's better than that.",
+         "Image": "Futurama.jpg",
+         "Rank": 8
+      },
+      {
+         "Title": "Family Guy",
+         "Network": "FOX",
+         "OrigArirDate": "1999-2002 & 2005-Present",
+         "Description": "This reminds me of the time IGN was making a Top 100 Animated Series list and didn't give Family Guy #1. Yeah, that happened, but you can't complain with making the Top 10. Surpassing animated comedies such as Futurama, The Flintstones and Scooby-Doo Where Are You! is a hell of a feat and Family Guy guru Seth MacFarlane deserves all the credit in the world for making it happen. Kicking off strong after the 1999 Super Bowl, MacFarlane's wildly popular series about a dysfunctional family and their wacky misadventures would eventually prove its power by being cancelled and coming back even stronger than before. Now a major comedy presence, Family Guy has gone from tangentially making reference to other programs (in their 'manatee gags') to now being lampooned and referenced itself. And the show deserves it, as we can't think of another TV comedy that creates as many laughs in a half hour as Peter Griffin and the rest of Quahog.",
+         "Image": "FamilyGuy.jpg",
+         "Rank": 7
+      },
+      {
+         "Title": "The Tick (1994)",
+         "Network": "FOX",
+         "OrigArirDate": " 1994-1996",
+         "Description": "'SPOOOOOOOON!' Nuff said? Probably. But for those of you who've never seen The Tick, or read the Ben Edlund comic book series that it's based on, you sure missed out on some rich chocolate, because it was the first great lampooning of the superhero genre. Sure, we've read Spider-Ham and Groo the Wanderer, but they didn't hit the nail on the head like The Tick. Combining the comedy stylings of Mel Brooks, Monty Python and... we dunno, maybe Emo Phillips... the Tick was ready to protect 'The City' at all costs. Which city? Why, the one with all the ridiculously costumed heroes and villains of course. Like a guy who dressed up like a giant blue tick, and yet exhibits no powers or abilities that have to do with ticks. Or the dude who's got a chair for a face and is named Chairface. But the best part of this show was the Tick's own personal harebrained hero rhetoric. Some of our favorites include 'Mucal invader! Is there no end to your oozing?' and 'Evil is out there making hand-crafted mischief for the swap meet of villainy! And you can't strike a good deal with evil. No matter how much you haggle!' And of course... 'You wouldn't lie to me, would you, Little Wooden Boy?'",
+         "Image": "Tick.jpg",
+         "Rank": 6
+      },
+      {
+         "Title": "Beavis and Butt-head",
+         "Network": "MTV",
+         "OrigArirDate": "1993-1997",
+         "Description": "The genius of Beavis and Butt-head was that they both shared the simple goals of the common teenage boy -- to be able to score without actually having to leave the couch or stop eating nachos. It was an admirable dream, and one that we could all relate to. There was something cathartic about watching these two miserable nitwits fail at just about everything they tried to do but still walk away with the feeling that they were both utter 'badasses.' And even though the show's fans weren't actually delinquents from the fictional town of Highland, Texas, they all still took their cues from what both Beavis and Butt-head thought was 'cool' and what they thought 'sucked.' If Beavis and Butt-head liked a band, all of a sudden we found ourselves discovering a new 'appreciation' for their music. And if Beavis and Butt-head thought a band sucked, all of a sudden we started second-guessing our own fandom. Mike Judge took real life Gen X slacker idiocy and put it out there for all of us to love and admire. And as frequent identifiers of every single double entendre, it could be said that Beavis and Butt-head started the whole 'that's what she said' craze. The animation was often crude, but we were still transfixed on this parade of stupidity.",
+         "Image": "Beavis.jpg",
+         "Rank": 5
+      },
+      {
+         "Title": "South Park",
+         "Network": "Comedy Central",
+         "OrigArirDate": "1997-Present",
+         "Description": "Very few shows -- animated or not -- have been on for 12 seasons and still retain the relevance and entertainment value of South Park. Episodes alternate between sharp satirical looks at society to pop culture parodies to scatological humor, sometimes all within the same half-hour. Seemingly unafraid to take on any subject, Matt Stone and Trey Parker have created a forum for their opinions that's unfiltered and raw, making some of the freshest comedy currently on the air. The show's incredibly fast production schedule allows Parker and Stone to write and produce episodes almost up to the day they air, something unheard of in the animation genre, where it normally takes months to produce a half-hour episode. The show's style, while looking like stop-motion construction paper cut-outs, is animated completely on computers. Sometimes the style even changes to fit the episode's content, such as the anime sequences in season eight's 'Good Times with Weapons' and the World of Warcraft-style sequences in season 10's 'Make Love, Not Warcraft.' No matter your sense of humor, political stance, or lifestyle, there's bound to be a South Park episode that makes you laugh, infuriates you, or just plain offends. And we wouldn't have it any other way.",
+         "Image": "SouthPark.jpg",
+         "Rank": 4
+      },
+      {
+         "Title": "Looney Tunes",
+         "Network": "None",
+         "OrigArirDate": " Syndicated theatrical shorts",
+         "Description": "We debated this one a bit because, yes, it's kind of a cheat. After all, the content of this show was originally produced as shorts for movie theaters. However, several generations have since been introduced to these truly wonderful animated segments as part of a television program. Whether it was simply called Looney Tunes or The Bugs Bunny Show (or the many variations, such as The Bugs Bunny/Road Runner Hour) didn't matter, because what was offered was cartoon bliss for children and adults alike -- hysterical and highly imaginative adventures starring iconic characters like Bugs Bunny and Daffy Duck, created by amazingly talented men like Friz Freleng and Chuck Jones. From Bugs and Daffy arguing over whether it was duck season or rabbit season, to Elmer Fudd declaring 'Kill the wabbit!', to Michigan J. Frog singing 'Hello! Ma Baby' to a surprised construction worker, there is one memorable moment after another delivered here that have truly stood the test of time and continue to entertain decades after they were first created.",
+         "Image": "LooneyTunes.jpg",
+         "Rank": 3
+      },
+      {
+         "Title": "Batman: The Animated Series",
+         "Network": "FOX",
+         "OrigArirDate": "1992-1995",
+         "Description": "The Gotham night sky burns black and red. The bat signal shines bright and puts a few shady crooks on notice. And then the jet engine of the Bat's sleek tank ignites, the theme music kicks in and an animated icon is born. The opening titles of television's best take on a superhero to date signaled an era-defining change whose impact echoes to this day. From Justice League to Chris Nolan's recent adaptation of the Caped Crusader, TAS' Batman raised the bar and redefined what quality storytelling is. It tested how far one could go in the kid-friendly arena of cartoons and deliver something all ages could respect and appreciate. The stark and deliberate animation style, Kevin Conroy's gravel-lined voice and Mark Hamill's chilling Joker made the majority of TAS' episodes an event. The show even managed to give Batman things to do outside the trouble caused by his rogue's gallery: See the HARDAC episode 'Heart of Steel' and 'The Forgotten''s depiction of Bruce Wayne as a homeless amnesiac for proof. 'Near-perfect' is a phrase we don't use lightly around here, but one must give credit where credit is due when a show tells a mini-movie in its opening credits that's better than what most feature films can do. Why are you still reading this? See the episodes now for the first time or crack-out the boxset and settle in for a retrospective. Thank us later.",
+         "Image": "Batman.jpg",
+         "Rank": 2
+      },
+      {
+         "Title": "The Simpsons",
+         "Network": "FOX",
+         "OrigArirDate": " 1989-Present",
+         "Description": "Currently airing its landmark 20th season, The Simpsons is a veritable pop culture icon. The Simpsons is not only the longest running American animated program, it's also the longest running American sitcom, and is currently tied with Gunsmoke for the longest running American primetime series. Those records alone don't earn it the top place on our list, however. The Simpsons is also an incredibly funny show that's produced more amusing characters and situations than the vast majority of all other American sitcoms. From its start as rough shorts airing during The Tracey Ullman Show, the dysfunctional Simpson family has been a sharp parody of the middle class American lifestyle. Many fans view the first eight seasons as the series' best, containing such classics as 'The Crepes of Wrath,' 'One Fish, Two Fish, Blowfish, Blue Fish,' and 'Marge vs. the Monorail,' but it can be argued that even with a dip in quality from the early seasons, The Simpsons remains an entertaining and relevant series, and after two decades stays accessible to both the original fans and a whole new generation of viewers.",
+         "Image": "Simpsons.jpg",
+         "Rank": 1
+      }
+   ]
+}

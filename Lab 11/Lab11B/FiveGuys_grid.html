@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's Five Guys</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: red;
+         color: black;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-gap: 1px;
+         grid-template-columns: 250px 250px;
+         width: 502px;
+         background-color: #000;
+         color: #111;
+      }
+
+      .box {
+         background-color: black;
+         color: white;
+         border-radius: 5px;
+         padding: 5px;
+         font-size: 1em;
+         border: solid white 1px;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Marko Doroch's Five Guys</h1>
+   <div class="wrapper">
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         Welcome to Five Guys. May I take your order.
+      </div>
+      <div class="box">
+         Choose a meal
+      </div>
+      <div class="box">
+         Cook to order
+      </div>
+      <div class="box">
+         <input id="radHam" name="R1" type="radio" value="0" onchange="Clear()" />
+         <label for="radHam">Hamburger</label><br />
+         <input id="radCheese" name="R1" type="radio" value="1" onchange="Clear()" />
+         <label for="radCheese">Cheeseburger</label><br />
+         <input id="radBaconHam" name="R1" type="radio" value="2" onchange="Clear()" />
+         <label for="radBaconHam">Bacon Hamburger</label><br />
+         <input id="radBaconCheese" name="R1" type="radio" value="3" onchange="Clear()" />
+         <label for="radBaconCheese">Bacon Cheeseburger</label><br />
+      </div>
+      <div class="box">
+         <input id="Radio5" name="R2" type="radio" value="0" onchange="Clear()" />
+         <label for="Radio5">Rare</label><br />
+         <input id="Radio6" name="R2" type="radio" value="1" onchange="Clear()" />
+         <label for="Radio6">Medium rare</label><br />
+         <input id="Radio7" name="R2" type="radio" value="2" onchange="Clear()" />
+         <label for="Radio7">Medium well</label><br />
+         <input id="Radio8" name="R2" type="radio" value="3" onchange="Clear()" />
+         <label for="Radio8">Well</label><br />
+      </div>
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         Toppings
+      </div>
+      <div class="box">
+         <input id="Checkbox1" type="checkbox" name="chToppings" value="Mayo" onchange="Clear()" />
+         <label for="Checkbox1">Mayo</label><br />
+         <input id="Checkbox2" type="checkbox" name="chToppings" value="Lettuce" onchange="Clear()" />
+         <label for="Checkbox2">Lettuce</label><br />
+         <input id="Checkbox3" type="checkbox" name="chToppings" value="Pickles" onchange="Clear()" />
+         <label for="Checkbox3">Pickles</label><br />
+         <input id="Checkbox4" type="checkbox" name="chToppings" value="Tomatoes" onchange="Clear()" />
+         <label for="Checkbox4">Tomatoes</label><br />
+      </div>
+      <div class="box">
+         <input id="Checkbox5" type="checkbox" name="chToppings" value="Grilled onions" onchange="Clear()" />
+         <label for="Checkbox5">Grilled onions</label><br />
+         <input id="Checkbox6" type="checkbox" name="chToppings" value="Grilled mushrooms" onchange="Clear()" />
+         <label for="Checkbox6">Grilled mushrooms</label><br />
+         <input id="Checkbox7" type="checkbox" name="chToppings" value="Ketchup" onchange="Clear()" />
+         <label for="Checkbox7">Ketchup</label><br />
+         <input id="Checkbox8" type="checkbox" name="chToppings" value="Mustard" onchange="Clear()" />
+         <label for="Checkbox8">Mustard</label><br />
+      </div>
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         <input id="Checkbox9" type="checkbox" onchange="Clear()" />
+         <label for="Checkbox9">Would you like fries with that?</label><br />
+      </div>
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         <button id="btnOrder" onclick="Display()">Put in your order</button>
+      </div>
+      <div id="divOrder" class="box" style="grid-column: 1 / span 2 ;">
+         Your order:
+      </div>
+      <div id="divTotal" class="box" style="grid-column: 1 / span 2 ;">
+         ----
+      </div>
+   </div>
+   <script>
+      //Marko Doroch
+      function Display() {
+         document.getElementById("btnOrder").disabled = true;
+         document.getElementById("divOrder").innerHTML = "Your order:";
+         let userChoices = []; //[0] = meal, [1] = cook
+         let meal = ["Hamburger", "Cheeseburger", "Bacon Hamburger", "Bacon Cheeseburger"];
+         let price = [6.19, 6.89, 7.19, 7.89];
+
+         let cook = ["Rare", "Medium rare", "Medium well", "Well"];
+
+         total = 0;
+
+         for (let i = 1; i <= 2; i++) {
+            let radios = document.getElementsByName("R" + i);
+            for (let j = 0; j < radios.length; j++) {
+               if (radios[j].checked) {
+                  userChoices.push(radios[j].value);
+               }
+            }
+         }
+         if (userChoices.length < 2) {
+            alert("You forgot to choose a meal or a level of cooking!");
+            return;
+         }
+         total += price[userChoices[0]];
+         //console.log(total)
+         //alert(userChoices)
+         document.getElementById("divOrder").innerHTML +=
+            "<br/>" + meal[userChoices[0]] + " " + cook[userChoices[1]];
+
+         let toppings = document.getElementsByName("chToppings");
+         let userToppings = [];
+         for (let i = 0; i < toppings.length; i++) {
+            if (toppings[i].checked) {
+               userToppings.push(toppings[i].value);
+               if (userToppings.length == 1) {
+                  document.getElementById("divOrder").innerHTML +=
+                     "<br/><br/>Toppings:";
+               }
+               document.getElementById("divOrder").innerHTML +=
+                  "<br/>" + toppings[i].value;
+            }
+         }
+
+         let checked = document.getElementById("Checkbox9").checked;
+         if (checked == true) {
+            document.getElementById("divOrder").innerHTML +=
+               "<br/><br/>and an order of fries."
+            total += 3.79;
+         }
+
+         document.getElementById("divTotal").innerHTML = "Total: $" + total.toFixed(2);
+      }
+
+      function Clear() {
+         total = 0;
+         document.getElementById("btnOrder").disabled = false;
+         document.getElementById("divOrder").innerHTML = "";
+         document.getElementById("divTotal").innerHTML = "---";
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+Philadelphia|Philadelphia|1547607|36836|22361|387.jpg
+Pittsburgh|Allegheny|305841|42004|28176|386.jpg
+Allentown|Lehigh|118974|36655|16233|770.jpg
+Erie|Erie|100671|32508|18024|759.jpg
+Reading|Berks|88102|25567|13168|1545.jpg
+Scranton|Lackawanna|75806|38810|19006|765.jpg
+Bethlehem|Northampton|75018|45263|25104|770a.jpg
+Lancaster|Lancaster|59325|33743|16751|774.jpg
+Levittown|Bucks|52983|66395|26736|1548.jpg

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's (actually RollingStone's) Top Ten</title>
+   <!--Marko Doroch-->
+   <style>
+      .wrapper {
+         display: grid;
+         grid-gap: 1px;
+         grid-template-columns: 200px 200px 400px;
+         width: 802px;
+         background-color: #000;
+         color: #111;
+         height: 250px;
+      }
+
+      .box {
+         background-color: #fff;
+         color: #111;
+         border-radius: 5px;
+         padding: 5px;
+         font-size: 1em;
+         border: solid black 1px;
+      }
+   </style>
+</head>
+
+<body onload="populate()">
+   <h1>Marko Doroch's (actually RollingStone's) Top Ten</h1>
+   <img src="rolling-stone-magazine-logo2.jpg">
+   <div class="wrapper">
+      <div class="box" style="grid-row: 1 ; grid-column: 1 / span 2 ;">
+         <select id="selTitle" onchange="Display()"></select>
+      </div>
+      <div class="box" style="grid-column: 3 ; grid-row: 1 / span 7 ;">
+         <img id="imgRecords" src="" style="height:375px">
+      </div>
+      <div class="box">
+         Performer(s):
+      </div>
+      <div class="box">
+         <div id="divPerformer">AAA</div>
+      </div>
+      <div class="box">
+         Writer(s):
+      </div>
+      <div class="box">
+         <div id="divWriter">BBB</div>
+      </div>
+      <div class="box">
+         Producer(s):
+      </div>
+      <div class="box">
+         <div id="divProducer">CCC</div>
+      </div>
+      <div class="box">
+         Released:
+      </div>
+      <div class="box">
+         <div id="divRelease">DDD</div>
+      </div>
+      <div class="box">
+         Chart history:
+      </div>
+      <div class="box">
+         <div id="divChart">EEE</div>
+      </div>
+      <div class="box" style="grid-column: 1 / span 2 ;">
+         <label for="inSearch">Search</label>
+         <input type="text" id="inSearch" value="">
+         <button id="btnSearch" onclick="Search()">Search</button>
+      </div>
+   </div>
+   <script src="RollingStoneClass.js"></script>
+   <script>
+      //Marko Doroch
+      let Songs = [];
+      function populate() {
+         fetch('RollingStone.txt')
+            .then(function (response) {
+               return response.text();
+            })
+
+            .then(function (data) {
+               let text = data;
+               let qStuff = text.split(/\r\n/);
+               let mySelect = document.getElementById("selTitle");
+
+               for (let i = 0; i < qStuff.length; i++) {
+                  let pieces = qStuff[i].split("|");
+                  Songs[i] = new RollingStone(pieces[0], pieces[1], pieces[2], pieces[3], pieces[4], pieces[5], pieces[6], pieces[7]);
+
+                  let myOption = document.createElement("option");
+                  myOption.text = Songs[i].rank + ". " + Songs[i].title;
+                  myOption.value = i;
+                  mySelect.appendChild(myOption);
+               }
+
+               //console.log(Songs)
+               mySelect.dispatchEvent(new Event("change"));
+               Display();
+            })
+
+            .catch(function (error) {
+               console.log(error);
+            })
+      }
+      console.log(Songs)
+
+      function Display() {
+         let Index = document.getElementById("selTitle").value;
+         document.getElementById("divPerformer").innerHTML = Songs[Index].performer;
+         document.getElementById("divWriter").innerHTML = Songs[Index].writer;
+         document.getElementById("divProducer").innerHTML = Songs[Index].producer;
+         document.getElementById("divRelease").innerHTML = Songs[Index].released;
+         document.getElementById("divChart").innerHTML = Songs[Index].chartHistory;
+         document.getElementById("imgRecords").src = Songs[Index].imgRecord;
+      }
+
+      function Search() {
+         let alertMessege = "";
+         let keyword = document.getElementById("inSearch").value.trim();
+
+         if (keyword == "") {
+            alert("Please enter a search term!");
+            document.getElementById("inSearch").focus();
+            return;
+         }
+
+         found = false;
+         for (let i = 0; i < Songs.length; i++) {
+            if (Songs[i].title.toUpperCase().indexOf(keyword.toUpperCase()) != -1) {
+               found = true;
+               alertMessege += Songs[i].title + " by " + Songs[i].performer + "\n";
+            }
+            if (Songs[i].performer.toUpperCase().indexOf(keyword.toUpperCase()) != -1) {
+               found = true;
+               alertMessege += Songs[i].title + " by " + Songs[i].performer + "\n";
+            }
+         }
+         if (!found) {
+            alert("Sorry your search term was not found!");
+         } else {
+            alert(alertMessege);
+         }
+      }
+   </script>
+</body>
+
+</html>

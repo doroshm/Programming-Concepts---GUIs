@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's Film Noir</title>
+    <!--Marko Doroch-->
+    <style>
+        select {
+            background-color: darkblue;
+            color: white;
+            font-size: 1.1em;
+            border: transparent;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        span {
+            font-style: italic;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            padding-left: 10%;
+            display: grid;
+            grid-template-columns: 100px 200px 400px 500px;
+        }
+
+        .box {
+            text-align: center;
+            padding: 5px;
+            font-size: 1.3em;
+            border: solid darkblue 5px;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's Film Noir</h1>
+    <div class="wrapper">
+        <div class="box" style="grid-row: 1; grid-column: 1 / span 2  ;">
+            <select id="selFilm" onchange="Display()"></select>
+        </div>
+        <div class="box" style="grid-column: 3; grid-row: 1 / span 4;">
+            <img id="imgFilm" src="" style="width:350px">
+        </div>
+        <div class="box" style="grid-column: 4; grid-row: 1 / span 4;">
+            <iframe id="ifFilm" width="480" height="270" src="" style="border: none;">
+            </iframe>
+        </div>
+        <div class="box">Director: </div>
+        <div class="box">
+            <span id="divDirector">AAA</span>
+        </div>
+        <div class="box">Year:</div>
+        <div class="box">
+            <span id="divYear">BBB</span>
+        </div>
+        <span class="box" style="grid-column: 1 / span 2" id="divCast">Cast</span>
+        <div class="box" style="grid-column: 1 / span 4;">
+            <span id="divDesc"></span>
+            <div><a target="_blank" id="aIMDB" href="">(IMDB)</a></div>
+        </div>
+    </div>
+    <script>
+        //Marko Doroch
+        let filmStuff;
+        function populate() {
+            fetch("noir.json")
+                .then(function (response) {
+                    return response.json();
+                })
+
+                .then(function (data) {
+                    filmStuff = data;
+
+                    let mySelect = document.getElementById("selFilm");
+                    for (let i = 0; i < filmStuff.films.length; i++) {
+                        let myOption = document.createElement("option");
+                        myOption.text = filmStuff.films[i].title;
+                        myOption.value = i;
+                        mySelect.appendChild(myOption);
+                    }
+
+                    mySelect.value = Math.floor(Math.random() * filmStuff.films.length);
+                    mySelect.dispatchEvent(new Event("change"));
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+
+        function Display() {
+            let index = document.getElementById("selFilm").value;
+            document.getElementById("divDirector").innerHTML = filmStuff.films[index].director;
+            document.getElementById("divYear").innerHTML = filmStuff.films[index].year;
+            document.getElementById("divCast").innerHTML = filmStuff.films[index].stars;
+            document.getElementById("divDesc").innerHTML = filmStuff.films[index].desc;
+            document.getElementById("imgFilm").src = filmStuff.films[index].still;
+            document.getElementById("ifFilm").src = "https://www.youtube.com/embed/" + filmStuff.films[index].youtube;
+            document.getElementById("aIMDB").href = filmStuff.films[index].imdb;
+        }   
+    </script>
+</body>
+
+</html>

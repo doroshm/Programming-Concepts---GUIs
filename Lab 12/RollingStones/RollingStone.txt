@@ -1,0 +1,10 @@
+1|Like a Rolling Stone|Bob Dylan|Bob Dylan|Tom Wilson|July 1965/Columbia|12 weeks; No. 2|RollingStone.jpg
+2|(I Can't Get No) Satisfaction|The Rolling Stones|Mick Jagger, Keith Richards|Andrew Loog Oldham|May 1965/London|14 weeks; No. 1|Satisfaction.jpg
+3|Imagine|John Lennon|John Lennon|John Lennon, Phil Spector, Yoko Ono|Oct. 1971/Apple|9 weeks; No. 3|Imagine.jpg
+4|What's Going On|Marvin Gaye|Marvin Gaye, Renaldo Benson, Al Cleveland|Marvin Gaye|Feb. 1971/Tamla|13 weeks; No. 2|WhatsGoingOn.jpg
+5|Respect|Aretha Franklin|Otis Redding|Jerry Wexler|April 1967/Atlantic|12 weeks; No. 1|Respect.jpg
+6|Good Vibrations|The Beach Boys|Brian Wilson, Mike Love|Brian Wilson|Oct. 1966/Capitol|14 weeks; No. 1|GoodVibrations.jpg
+7|Johnny B. Goode|Chuck Berry|Chuck Berry|Leonard and Phil Chess|April 1958/Chess|15 weeks; No. 8|JohnnyBGoode.jpg
+8|Hey Jude|The Beatles|John Lennon, Paul McCartney|George Martin|Aug. 1968/Apple|19 weeks; No. 1|HeyJude.jpg
+9|Smells Like Teen Spirit|Nirvana|Kurt Cobain|Butch Vig|Sept. 1991/DGC|20 weeks; No. 6|TeenSpirit.jpg
+10|What'd I Say|Ray Charles|Ray Charles|Ahmet Ertegun, Jerry Wexler|June 1959/Atlantic|15 weeks; No. 6|WhatIdSay.jpg

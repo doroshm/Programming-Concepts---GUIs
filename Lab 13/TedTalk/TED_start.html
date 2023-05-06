@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko Doroch's TED Talks</title>
+    <!--Marko Doroch-->
+    <style>
+        textarea {
+            background-color: black;
+            color: white;
+            font-size: 21px;
+            border: transparent;
+        }
+
+        button {
+            background-color: red;
+            color: yellow;
+            border: transparent;
+            font-size: 20px;
+            border-radius: 100px;
+        }
+
+        button:hover {
+            background-color: yellow;
+            color: red;
+        }
+
+        button:disabled {
+            background-color: lightslategray;
+            color: darkgrey;
+        }
+
+        select {
+            background-color: red;
+            color: yellow;
+            border: transparent;
+        }
+
+        span {
+            font-style: italic;
+        }
+
+        body {
+            margin: auto;
+            width: 50%;
+            background-color: darkblue;
+            color: azure;
+            text-align: center;
+        }
+
+        .wrapper {
+            text-align: center;
+            display: grid;
+            grid-template-columns: 225px 225px 450px;
+        }
+
+        .box {
+            padding: 10px;
+            font-size: 1.2em;
+            border: solid blue 1px;
+        }
+
+        .a {
+            grid-column: 1 /span 2;
+            grid-row: 1;
+        }
+
+        .c {
+            grid-column: 3;
+            grid-row: 1 / span 6;
+        }
+
+        .d {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .e {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .f {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .g {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .h {
+            grid-column: 1;
+            grid-row: 4;
+        }
+
+        .i {
+            grid-column: 2;
+            grid-row: 4;
+        }
+
+        .j {
+            grid-column: 1 / span 2;
+            grid-row: 5;
+        }
+
+        .k {
+            grid-column: 2;
+            grid-row: 5;
+        }
+
+        .l {
+            grid-column: 1 / span 2;
+            grid-row: 6;
+        }
+
+        .m {
+            grid-column: 2;
+            grid-row: 6;
+        }
+
+        .n {
+            grid-column: 3;
+            grid-row: 6;
+        }
+
+        .o {
+            grid-column: 1 / span 3;
+            grid-row: 7;
+        }
+    </style>
+</head>
+
+<body onload="populate()">
+    <h1>Marko Doroch's TED Talks</h1>
+    <div class="wrapper">
+        <div class="box a">
+            <select id="selTitle" onchange="Display()"></select>
+        </div>
+        <div class="box c" style="padding: 0px;">
+            <iframe width="445" height="350" src="" id="ifTED" style="border: none;"></iframe>
+        </div>
+        <div class="box d">Author:</div>
+        <div class="box e">
+            <span id="spnAuthor">AAA</span>
+        </div>
+        <div class="box f">Runtime:</div>
+        <div class="box g">
+            <span id="spnRuntime">BBB</span>
+        </div>
+        <div class="box h">Number of views:</div>
+        <div class="box i">
+            <span id="spnViews">CCC</span>
+        </div>
+        <div class="box j">
+            <span id="spnDesc">DDD</span>
+        </div>
+        <div class="box l">
+            <label for="selMin">Search videos from</label>
+            <select id="selMin" onchange="ClearOut()">
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
+            </select>
+            <label for="selMax">to</label>
+            <select id="selMax" onchange="ClearOut()">
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
+                <option value="24">24</option>
+            </select> minutes.
+            <button id="btnSearch" onclick="Search()">Search</button>
+        </div>
+        <div class="box o">
+            <textarea rows="10" cols="71" id="taDisplay" readonly></textarea>
+        </div>
+    </div>
+    <script src="ted.js"></script>
+    <script>
+        //Marko Doroch
+        let TedTalks = [];
+        function populate() {
+            fetch('ted.txt')
+                .then(function (response) {
+                    return response.text();
+                })
+
+                .then(function (data) {
+                    let text = data;
+                    let qStuff = text.split(/\r\n/);
+                    let mySelect = document.getElementById("selTitle");
+
+                    for (let i = 0; i < qStuff.length; i++) {
+                        let pieces = qStuff[i].split("|");
+                        TedTalks[i] = new classTED(pieces[0], pieces[1], pieces[2], pieces[3], pieces[4], pieces[5], pieces[6]);
+
+                        let myOption = document.createElement("option");
+                        myOption.text = TedTalks[i].tedRank + ". " + TedTalks[i].tedTitle;
+                        myOption.value = i;
+                        mySelect.appendChild(myOption);
+                    }
+
+                    //console.log(Songs)
+                    mySelect.dispatchEvent(new Event("change"));
+                    Display();
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+
+        function Display() {
+            let Index = document.getElementById("selTitle").value;
+            document.getElementById("spnAuthor").innerHTML = TedTalks[Index].tedAuthor;
+            document.getElementById("spnRuntime").innerHTML = TedTalks[Index].tedTime;
+            document.getElementById("spnViews").innerHTML = TedTalks[Index].tedViews;
+            document.getElementById("spnDesc").innerHTML = TedTalks[Index].tedDesc;
+            document.getElementById("ifTED").src = "https://www.youtube.com/embed/" + TedTalks[Index].tedYouTube;
+
+        }
+
+        function Search() {
+            document.getElementById("taDisplay").value = "";
+            document.getElementById("btnSearch").disabled = true;
+            let min = document.getElementById("selMin").value;
+            let max = document.getElementById("selMax").value;
+            //alert(min + " " + max);
+
+            if (parseInt(min) >= parseInt(max)) {
+                alert("invalid time interval selected!");
+                return;
+            }
+
+            found = false;
+            for (let i = 0; i < TedTalks.length; i++) {
+                time = parseInt(TedTalks[i].tedTime);
+                if (time > min && time < max) {
+                    found = true;
+                    document.getElementById("taDisplay").value += TedTalks[i].tedTitle + " " + TedTalks[i].tedTime + "\n" + "\n";
+                }
+
+            }
+
+            if (!found) {
+                alert("Sorry we couldn't find anything between " + min + " and " + max + " minutes!");
+            }
+        }
+
+        function ClearOut() {
+            document.getElementById("taDisplay").value = "";
+            document.getElementById("btnSearch").disabled = false;
+        }
+
+    </script>
+</body>
+
+</html>

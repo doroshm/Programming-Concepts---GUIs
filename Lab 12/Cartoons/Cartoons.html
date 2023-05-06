@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Marko Doroch's Cartoons</title>
+   <!--Marko Doroch-->
+   <style>
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-gap: 1px;
+         grid-template-columns: 200px 200px 400px;
+         width: 802px;
+         height: 250px;
+      }
+
+      .box {
+         padding: 5px;
+         border: solid white 1px;
+      }
+   </style>
+</head>
+
+<body onload="populate()">
+   <h1>Marko Doroch's Cartoons</h1>
+   <div class="wrapper">
+      <div class="box" style="grid-row: 1 ; grid-column: 1 / span 2 ;">
+         <select id="selCartoon" onchange="Display()"></select>
+      </div>
+      <div class="box" style="grid-column: 3 ; grid-row: 1 / span 3 ;">
+         <img id="imgCartoon" src="" style="height:250px">
+      </div>
+      <div class="box">
+         Network:
+      </div>
+      <div class="box">
+         <div id="divNetwork">XXXX</div>
+      </div>
+      <div class="box">
+         Original Air Dates:
+      </div>
+      <div class="box">
+         <div id="divDates">YYYY</div>
+      </div>
+      <div class="box" style="grid-column: 1 / span 3 ;">
+         <div id="divDesc">ZZZZ</div>
+      </div>
+   </div>
+   <script>
+      //Marko Doroch
+      let cartoonStuff;
+      function populate() {
+         fetch("cartoon.json")
+            .then(function (response) {
+               return response.json();
+            })
+
+            .then(function (data) {
+               cartoonStuff = data;
+
+               let mySelect = document.getElementById("selCartoon");
+               for (let i = cartoonStuff.cartoons.length-1; i >= 0; i--) {
+                  let myOption = document.createElement("option");
+                  myOption.text = cartoonStuff.cartoons[i].Rank + ". " + cartoonStuff.cartoons[i].Title;
+                  myOption.value = i;
+                  console.log(i)
+                  mySelect.appendChild(myOption);
+               }
+
+               mySelect.value = Math.floor(Math.random() * cartoonStuff.cartoons.length);
+
+               mySelect.dispatchEvent(new Event("change"));
+            })
+
+            .catch(function (error) {
+               console.log(error);
+            })
+      }
+
+      function Display() {
+         let Index = document.getElementById("selCartoon").value;
+         document.getElementById("divNetwork").innerHTML = cartoonStuff.cartoons[Index].Network;
+         document.getElementById("divDates").innerHTML = cartoonStuff.cartoons[Index].OrigArirDate;
+         document.getElementById("divDesc").innerHTML = cartoonStuff.cartoons[Index].Description;
+         document.getElementById("imgCartoon").src = cartoonStuff.cartoons[Index].Image;
+      }
+   </script>
+</body>
+
+</html>
